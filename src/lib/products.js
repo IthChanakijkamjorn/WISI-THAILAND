@@ -21,7 +21,6 @@ export const products = [
     category: "Headend & Processing",
     shortDescription: "Multi-channel IP gateway delivering IPTV streams over existing LAN/WAN infrastructure. Ideal for hospitality and MDU environments.",
   },
-
   // Signal Distribution
   {
     id: "sd-1",
@@ -44,7 +43,6 @@ export const products = [
     category: "Signal Distribution",
     shortDescription: "In-line tap for distributing signals to multiple outlets without interrupting the main trunk signal path.",
   },
-
   // Fibre Optic Solutions
   {
     id: "fo-1",
@@ -58,7 +56,7 @@ export const products = [
     name: "RF over Fibre Receiver",
     model: "WISI OF 100 R",
     category: "Fibre Optic Solutions",
-    shortDescription: "Optical receiver converting fibre-carried RF signals back to electrical. Pairs with OF 100 T for complete optical link.",
+    shortDescription: "Optical receiver converting fibre-carried RF signals back to electrical. Pairs with OF 100 T for a complete optical link.",
   },
   {
     id: "fo-3",
@@ -67,7 +65,6 @@ export const products = [
     category: "Fibre Optic Solutions",
     shortDescription: "Fibre-to-coax optical node for hybrid fibre-coaxial (HFC) infrastructure. Supports forward and return path signals.",
   },
-
   // Accessories & Modules
   {
     id: "ac-1",

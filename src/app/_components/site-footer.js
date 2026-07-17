@@ -7,8 +7,7 @@ export default function SiteFooter() {
       <div className="mx-auto w-full max-w-6xl px-6 py-14 sm:px-10">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
 
-          {/* Brand */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
               <span className={`${cormorant.className} text-2xl font-bold text-[#004874]`}>WISI</span>
               <span className="h-4 w-px bg-[#C8A96E]/60" />
@@ -21,11 +20,8 @@ export default function SiteFooter() {
             </p>
           </div>
 
-          {/* Contact */}
           <div className="flex flex-col gap-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#004874]/50">
-              Contact
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#004874]/50">Contact</p>
             <a
               href="tel:+6621234567"
               className="flex items-center gap-2 text-sm text-[#4A6274] transition hover:text-[#004874]"
@@ -44,28 +40,18 @@ export default function SiteFooter() {
               </svg>
               info@wisithailand.co.th
             </a>
-            <p className="text-sm text-[#4A6274]">
-              Bangkok, Thailand<br />
-              Mon – Fri: 08:30 – 17:30
-            </p>
+            <p className="text-sm text-[#4A6274]">Bangkok, Thailand<br />Mon – Fri: 08:30 – 17:30</p>
           </div>
 
-          {/* Quick Links */}
           <div className="flex flex-col gap-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#004874]/50">
-              Quick Links
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#004874]/50">Quick Links</p>
             <nav className="flex flex-col gap-2">
               {[
                 { label: "Home", href: "/" },
                 { label: "Products", href: "/products" },
                 { label: "Contact", href: "/contact" },
               ].map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm text-[#4A6274] transition hover:text-[#004874]"
-                >
+                <Link key={link.href} href={link.href} className="text-sm text-[#4A6274] transition hover:text-[#004874]">
                   {link.label}
                 </Link>
               ))}
@@ -73,7 +59,6 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div className="mt-12 border-t border-[#004874]/10 pt-6">
           <p className="text-center text-xs text-[#004874]/40">
             &copy; 2026 WISI Thailand. All rights reserved.

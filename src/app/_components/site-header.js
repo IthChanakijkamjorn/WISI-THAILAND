@@ -27,27 +27,25 @@ export default function SiteHeader() {
   return (
     <header className="fixed left-0 right-0 top-0 z-50 bg-[#004874] text-white shadow-[0_8px_32px_rgba(0,72,116,0.35)] animate-nav-drop">
       <div className="mx-auto flex w-full max-w-6xl items-center px-4 py-3 sm:px-10">
-        {/* Logo */}
         <Link href="/" className="flex items-center gap-2 select-none">
-          <span className={`${cormorant.className} text-2xl font-700 tracking-tight text-white leading-none`}>
+          <span className={`${cormorant.className} text-2xl font-bold tracking-tight text-white leading-none`}>
             WISI
           </span>
-          <span className="h-5 w-px bg-[#C8A96E]/60" />
-          <span className={`${inter.className} text-xs font-400 tracking-[0.25em] uppercase text-white/75`}>
+          <span className="h-5 w-px bg-[#C8A96E]/70" />
+          <span className={`${inter.className} text-xs font-normal tracking-[0.28em] uppercase text-white/70`}>
             Thailand
           </span>
         </Link>
 
         <div className="ml-auto flex items-center gap-3">
-          {/* Desktop nav */}
           <nav
             aria-label="Primary"
-            className="hidden items-center gap-7 text-[11px] font-semibold uppercase tracking-[0.3em] text-white/80 md:flex"
+            className="hidden items-center gap-7 text-[11px] font-semibold uppercase tracking-[0.3em] text-white/75 md:flex"
           >
             {navItems.map((item) => (
               <Link
                 key={item.href}
-                className="transition hover:text-white hover:tracking-[0.35em]"
+                className="transition hover:text-white"
                 href={item.href}
               >
                 {item.label}
@@ -55,15 +53,13 @@ export default function SiteHeader() {
             ))}
           </nav>
 
-          {/* Contact CTA button desktop */}
           <Link
             href="/contact"
-            className="hidden md:inline-flex items-center rounded-full border border-[#C8A96E]/60 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#C8A96E] transition hover:bg-[#C8A96E]/10 ml-4"
+            className="hidden md:inline-flex items-center rounded-full border border-[#C8A96E]/60 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#C8A96E] transition hover:bg-[#C8A96E]/10 ml-3"
           >
             Get in Touch
           </Link>
 
-          {/* Mobile menu */}
           <div className="relative md:hidden" ref={menuRef}>
             <button
               onClick={() => setMenuOpen((v) => !v)}
