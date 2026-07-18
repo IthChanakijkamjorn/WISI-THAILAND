@@ -1,17 +1,128 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { cormorant } from "./brand-fonts";
 
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/products", label: "Products" },
+  { href: "/projects", label: "Projects" },
+  { href: "/contact", label: "Contact" },
+];
+
 export default function SiteHeader() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Close menu on route change
+  useEffect(() => { setOpen(false); }, [pathname]);
+
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 flex h-16 items-center justify-between border-b border-white/40 bg-white/80 px-6 backdrop-blur-md sm:px-10">
-      <Link href="/" className={`${cormorant.className} text-xl font-semibold text-[#0D1B2A] tracking-wide`}>
-        WISI Thailand
-      </Link>
-      <nav className="flex items-center gap-6 text-xs font-semibold uppercase tracking-[0.3em] text-[#004874]/70">
-        <Link href="/products" className="transition hover:text-[#004874]">Products</Link>
-        <Link href="/projects" className="transition hover:text-[#004874]">Projects</Link>
-        <Link href="/contact" className="rounded-full bg-[#004874] px-4 py-2 text-white transition hover:bg-[#003558]">Contact</Link>
-      </nav>
-    </header>
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-white/95 shadow-[0_2px_24px_rgba(0,72,116,0.10)] backdrop-blur-md"
+            : "bg-white/80 backdrop-blur-md"
+        }`}
+      >
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 sm:px-10">
+          {/* Logo */}
+          <Link
+            href="/"
+            className={`${cormorant.className} flex items-center gap-2 text-xl font-bold tracking-wide text-[#0D1B2A]`}
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#004874] text-xs font-black text-white">W</span>
+            WISI Thailand
+          </Link>
+
+          {/* Desktop nav */}
+          <nav className="hidden items-center gap-1 md:flex">
+            {navLinks.slice(0, 3).map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`rounded-xl px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] transition ${
+                  pathname === link.href
+                    ? "bg-[#004874]/10 text-[#004874]"
+                    : "text-[#4A6274] hover:bg-[#004874]/5 hover:text-[#004874]"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              href="/contact"
+              className="ml-3 rounded-xl bg-[#004874] px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.25em] text-white shadow-[0_4px_14px_rgba(0,72,116,0.35)] transition hover:bg-[#003558] hover:shadow-[0_6px_18px_rgba(0,72,116,0.45)]"
+            >
+              Contact
+            </Link>
+          </nav>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-xl transition hover:bg-[#004874]/5 md:hidden"
+            aria-label="Toggle menu"
+          >
+            <span className={`block h-0.5 w-5 rounded-full bg-[#0D1B2A] transition-all duration-300 ${open ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`block h-0.5 w-5 rounded-full bg-[#0D1B2A] transition-all duration-300 ${open ? "opacity-0" : ""}`} />
+            <span className={`block h-0.5 w-5 rounded-full bg-[#0D1B2A] transition-all duration-300 ${open ? "-translate-y-2 -rotate-45" : ""}`} />
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile menu overlay */}
+      <div
+        className={`fixed inset-0 z-40 transition-all duration-300 md:hidden ${
+          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        onClick={() => setOpen(false)}
+        style={{ background: "rgba(13,27,42,0.45)", backdropFilter: "blur(4px)" }}
+      />
+
+      {/* Mobile menu panel */}
+      <div
+        className={`fixed inset-x-0 top-16 z-40 transition-all duration-300 md:hidden ${
+          open ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0 pointer-events-none"
+        }`}
+      >
+        <nav className="mx-4 mt-2 overflow-hidden rounded-2xl border border-white/60 bg-white shadow-[0_20px_60px_rgba(0,72,116,0.18)]">
+          {navLinks.map((link, i) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`flex items-center justify-between px-6 py-4 text-sm font-semibold uppercase tracking-[0.25em] transition ${
+                i !== navLinks.length - 1 ? "border-b border-[#004874]/8" : ""
+              } ${
+                pathname === link.href
+                  ? "bg-[#004874]/5 text-[#004874]"
+                  : "text-[#4A6274] hover:bg-[#004874]/5 hover:text-[#004874]"
+              } ${link.href === "/contact" ? "!text-[#004874] font-bold" : ""}`}
+            >
+              {link.label}
+              <svg className="h-4 w-4 opacity-30" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </>
   );
 }
