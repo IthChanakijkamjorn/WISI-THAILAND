@@ -33,99 +33,117 @@ async function getProduct(slug) {
   );
 }
 
-function isFlatSpecs(specifications) {
-  if (!specifications || specifications.length === 0) return false;
-  const first = specifications[0];
-  return typeof first.label === 'string' && typeof first.value === 'string';
-}
-
 export default async function ProductPage({ params }) {
   const { category, slug } = await params;
   const product = await getProduct(slug);
   if (!product) notFound();
   const categoryLabel = categoryLabels[category] || category;
-  const flatSpecs = isFlatSpecs(product.specifications);
+
+  const flatSpecs = product.specifications?.length > 0 && typeof product.specifications[0].label === 'string';
 
   return (
     <SiteShell>
       <SiteHeader />
-      <main className="relative pt-28">
-        <section className="mx-auto w-full max-w-6xl px-6 pb-24 pt-10 sm:px-10">
-          <nav className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#004874]/60">
-            <Link href="/products" className="hover:text-[#004874]">Products</Link>
-            <span>/</span>
-            <Link href={`/products/${category}`} className="hover:text-[#004874]">{categoryLabel}</Link>
-            <span>/</span>
-            <span className="text-[#004874] truncate max-w-[160px]">{product.name}</span>
-          </nav>
+      <main className="relative pt-20">
 
-          <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_1.1fr]">
-            <div className="animate-fade-up" style={{ animationDelay: "0ms" }}>
+        {/* Breadcrumb */}
+        <div className="border-b border-[#004874]/8 bg-[#F0F5F9]">
+          <div className="mx-auto w-full max-w-7xl px-6 py-4 sm:px-10">
+            <nav className="flex flex-wrap items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.25em]">
+              <Link href="/products" className="text-[#004874]/50 transition hover:text-[#004874]">Products</Link>
+              <svg className="h-3 w-3 text-[#004874]/30" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+              <Link href={`/products/${category}`} className="text-[#004874]/50 transition hover:text-[#004874]">{categoryLabel}</Link>
+              <svg className="h-3 w-3 text-[#004874]/30" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+              <span className="max-w-[200px] truncate text-[#004874]">{product.name}</span>
+            </nav>
+          </div>
+        </div>
+
+        {/* Main content */}
+        <section className="mx-auto w-full max-w-7xl px-6 py-12 sm:px-10">
+          <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
+
+            {/* Image */}
+            <div className="animate-fade-up" style={{ animationDelay: '0ms' }}>
               {product.imageUrl ? (
                 <ProductImageLightbox imageUrl={product.imageUrl} productName={product.name} />
               ) : (
-                <div className="flex h-96 w-full items-center justify-center rounded-3xl bg-[#004874]/5">
-                  <span className="text-[10px] uppercase tracking-widest text-[#004874]/30">No image</span>
+                <div className="flex h-96 w-full items-center justify-center rounded-2xl bg-[#F0F5F9]">
+                  <span className="text-4xl opacity-20">📦</span>
                 </div>
               )}
             </div>
 
-            <div className="flex flex-col gap-5 animate-fade-up" style={{ animationDelay: "80ms" }}>
+            {/* Details */}
+            <div className="flex flex-col gap-5 animate-fade-up" style={{ animationDelay: '80ms' }}>
               {product.featured && (
-                <span className="inline-block w-fit rounded-full bg-[#004874] px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-white">Featured</span>
+                <span className="inline-block w-fit rounded-full bg-[#C8A96E] px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-white">Featured</span>
               )}
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#004874]/60">{categoryLabel}</p>
-                <h1 className="mt-2 text-3xl font-bold tracking-tight text-[#0D1B2A] sm:text-4xl">{product.name}</h1>
-                {product.brand && <p className="mt-1 text-sm text-[#004874]/60">{product.brand}</p>}
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#004874]/50">{categoryLabel}</p>
+                <h1 className={`${cormorant.className} mt-2 text-3xl font-bold text-[#0D1B2A] sm:text-4xl`}>{product.name}</h1>
+                {product.brand && <p className="mt-1 text-sm font-medium text-[#C8A96E]">{product.brand}</p>}
               </div>
-              {product.shortDescription && <p className="text-base leading-7 text-[#4A6274]">{product.shortDescription}</p>}
+
+              {product.shortDescription && (
+                <p className="text-base leading-7 text-[#4A6274]">{product.shortDescription}</p>
+              )}
+
               {product.description && (
-                <div className="rounded-2xl border border-[#004874]/10 bg-white p-5">
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#004874]/60">Description</p>
+                <div className="rounded-xl border border-[#004874]/8 bg-[#F7FAFC] p-5">
+                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#004874]/50">Description</p>
                   <p className="whitespace-pre-line text-sm leading-7 text-[#4A6274]">{product.description}</p>
                 </div>
               )}
+
               <div className="mt-auto flex flex-col gap-3">
                 {product.datasheetUrl && (
-                  <a href={product.datasheetUrl} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-3 rounded-2xl border border-[#004874]/15 bg-white px-5 py-4 text-sm font-semibold text-[#004874] transition hover:bg-[#004874] hover:text-white">
-                    <span>📄</span> Download Datasheet (PDF)
+                  <a
+                    href={product.datasheetUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 rounded-xl border border-[#004874]/15 bg-white px-5 py-3.5 text-sm font-semibold text-[#004874] shadow-sm transition hover:bg-[#004874] hover:text-white"
+                  >
+                    <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    Download Datasheet (PDF)
                   </a>
                 )}
-                <Link href="/contact" className="rounded-full bg-[#004874] px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.32em] text-white transition hover:bg-[#003558]">
+                <Link
+                  href="/contact"
+                  className="rounded-xl bg-[#004874] px-6 py-3.5 text-center text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-[0_4px_16px_rgba(0,72,116,0.3)] transition hover:bg-[#003558]"
+                >
                   Enquire About This Product
                 </Link>
               </div>
             </div>
           </div>
 
-          {product.atAGlance && product.atAGlance.length > 0 && (
-            <div className="mt-10 animate-fade-up" style={{ animationDelay: "120ms" }}>
-              <div className="rounded-2xl border border-[#004874]/10 bg-white p-6">
-                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#004874]/60">At a Glance</p>
-                <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  {product.atAGlance.map((point, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm leading-6 text-[#4A6274]">
-                      <span className="mt-1 shrink-0 text-[#004874]">✓</span>
-                      {point}
-                    </li>
-                  ))}
-                </ul>
+          {/* At a Glance */}
+          {product.atAGlance?.length > 0 && (
+            <div className="mt-12 animate-fade-up" style={{ animationDelay: '120ms' }}>
+              <h2 className={`${cormorant.className} mb-5 text-2xl font-bold text-[#0D1B2A]`}>At a Glance</h2>
+              <div className="grid gap-3 rounded-2xl border border-[#004874]/8 bg-[#F7FAFC] p-6 sm:grid-cols-2">
+                {product.atAGlance.map((point, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#004874] text-[10px] text-white">✓</span>
+                    <p className="text-sm leading-6 text-[#4A6274]">{point}</p>
+                  </div>
+                ))}
               </div>
             </div>
           )}
 
-          {product.specifications && product.specifications.length > 0 && (
-            <div className="mt-16 animate-fade-up" style={{ animationDelay: "160ms" }}>
-              <h2 className={`${cormorant.className} text-2xl font-semibold text-[#0D1B2A] mb-6`}>Specifications</h2>
+          {/* Specifications */}
+          {product.specifications?.length > 0 && (
+            <div className="mt-12 animate-fade-up" style={{ animationDelay: '160ms' }}>
+              <h2 className={`${cormorant.className} mb-5 text-2xl font-bold text-[#0D1B2A]`}>Specifications</h2>
               {flatSpecs ? (
-                <div className="rounded-2xl border border-[#004874]/10 bg-white overflow-hidden">
-                  <div className="px-6 py-4 bg-[#004874]/5 border-b border-[#004874]/10">
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#004874]">Technical Data</p>
+                <div className="overflow-hidden rounded-2xl border border-[#004874]/8 bg-white">
+                  <div className="border-b border-[#004874]/8 bg-[#F7FAFC] px-6 py-3">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#004874]">Technical Data</p>
                   </div>
                   {product.specifications.map((row, i) => (
-                    <div key={row._key || i} className={`flex px-6 py-3 text-sm border-b border-[#004874]/5 last:border-0 ${i % 2 === 0 ? 'bg-white' : 'bg-[#004874]/[0.02]'}`}>
+                    <div key={row._key || i} className={`flex px-6 py-3 text-sm ${i % 2 === 0 ? 'bg-white' : 'bg-[#F7FAFC]'} border-b border-[#004874]/5 last:border-0`}>
                       <span className="w-1/2 font-medium text-[#0D1B2A]">{row.label}</span>
                       <span className="w-1/2 text-[#4A6274]">{row.value}</span>
                     </div>
@@ -134,12 +152,12 @@ export default async function ProductPage({ params }) {
               ) : (
                 <div className="flex flex-col gap-4">
                   {product.specifications.map((tab) => (
-                    <div key={tab._key} className="rounded-2xl border border-[#004874]/10 bg-white overflow-hidden">
-                      <div className="px-6 py-4 bg-[#004874]/5 border-b border-[#004874]/10">
-                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#004874]">{tab.tabName}</p>
+                    <div key={tab._key} className="overflow-hidden rounded-2xl border border-[#004874]/8 bg-white">
+                      <div className="border-b border-[#004874]/8 bg-[#F7FAFC] px-6 py-3">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#004874]">{tab.tabName}</p>
                       </div>
-                      {tab.rows && tab.rows.map((row, i) => (
-                        <div key={row._key || i} className={`flex px-6 py-3 text-sm border-b border-[#004874]/5 last:border-0 ${i % 2 === 0 ? 'bg-white' : 'bg-[#004874]/[0.02]'}`}>
+                      {tab.rows?.map((row, i) => (
+                        <div key={row._key || i} className={`flex px-6 py-3 text-sm ${i % 2 === 0 ? 'bg-white' : 'bg-[#F7FAFC]'} border-b border-[#004874]/5 last:border-0`}>
                           <span className="w-1/2 font-medium text-[#0D1B2A]">{row.label}</span>
                           <span className="w-1/2 text-[#4A6274]">{row.value}</span>
                         </div>

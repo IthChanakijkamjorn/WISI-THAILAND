@@ -13,6 +13,13 @@ const categoryLabels = {
   'accessories-modules': 'Accessories & Modules',
 };
 
+const categoryIcons = {
+  'headend-processing': '📡',
+  'signal-distribution': '🔀',
+  'fibre-optic-solutions': '💡',
+  'accessories-modules': '🔧',
+};
+
 export async function generateStaticParams() {
   const products = await client.fetch(`*[_type == "product" && defined(category)] { category }`);
   const cats = [...new Set(products.map((p) => p.category).filter(Boolean))];
@@ -37,46 +44,68 @@ export default async function CategoryPage({ params }) {
     if (exists === 0) notFound();
   }
   const label = categoryLabels[category] || category.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  const icon = categoryIcons[category] || '📦';
 
   return (
     <SiteShell>
       <SiteHeader />
-      <main className="relative pt-28">
-        <section className="mx-auto w-full max-w-6xl px-6 pb-24 pt-10 sm:px-10">
-          <Link href="/products" className="text-xs font-semibold uppercase tracking-[0.3em] text-[#004874]/60 hover:text-[#004874]">&larr; All Products</Link>
-          <div className="mt-4 flex flex-col gap-3 animate-fade-up" style={{ animationDelay: "0ms" }}>
-            <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#004874]/60">{label}</p>
-            <h1 className={`${cormorant.className} text-4xl font-semibold text-[#0D1B2A] sm:text-5xl`}>
-              {products.length} product{products.length !== 1 ? 's' : ''} available.
-            </h1>
+      <main className="relative pt-20">
+
+        {/* Hero */}
+        <section className="border-b border-[#004874]/8 bg-[#F0F5F9]">
+          <div className="mx-auto w-full max-w-7xl px-6 py-12 sm:px-10">
+            <Link href="/products" className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#004874]/60 transition hover:text-[#004874]">
+              <svg className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+              All Products
+            </Link>
+            <div className="mt-4 flex items-center gap-4">
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#004874]/10 text-2xl">{icon}</span>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#C8A96E]">Category</p>
+                <h1 className={`${cormorant.className} text-3xl font-bold text-[#0D1B2A] sm:text-4xl`}>{label}</h1>
+              </div>
+            </div>
+            <p className="mt-2 text-sm text-[#4A6274]">{products.length} product{products.length !== 1 ? 's' : ''} available</p>
           </div>
+        </section>
+
+        {/* Grid */}
+        <section className="mx-auto w-full max-w-7xl px-6 py-12 sm:px-10">
           {products.length === 0 ? (
-            <div className="mt-10 rounded-3xl border border-white/70 bg-white/70 p-10 text-center">
-              <p className="text-[#4A6274]">No products in this category yet.</p>
+            <div className="rounded-2xl border border-[#004874]/10 bg-white p-12 text-center">
+              <p className="text-sm text-[#4A6274]">No products in this category yet.</p>
               <Link href="/products" className="mt-4 inline-block text-xs font-semibold uppercase tracking-[0.3em] text-[#004874] hover:underline">&larr; Back</Link>
             </div>
           ) : (
-            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {products.map((product, index) => (
                 <Link
                   key={product._id}
                   href={`/products/${category}/${product.slug}`}
-                  className="group rounded-3xl border border-white/70 bg-white/80 p-5 shadow-[0_12px_32px_rgba(0,72,116,0.09)] transition hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(0,72,116,0.15)] animate-fade-up"
-                  style={{ animationDelay: `${index * 60}ms` }}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-[#004874]/8 bg-white shadow-[0_2px_12px_rgba(0,72,116,0.06)] transition hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,72,116,0.14)] animate-fade-up"
+                  style={{ animationDelay: `${index * 40}ms` }}
                 >
-                  {product.imageUrl ? (
-                    <div className="relative mb-4 h-40 w-full overflow-hidden rounded-2xl bg-gray-50">
-                      <Image src={product.imageUrl} alt={product.name} fill className="object-contain p-2 transition group-hover:scale-105" />
+                  <div className="relative h-44 w-full overflow-hidden bg-[#F7FAFC]">
+                    {product.imageUrl ? (
+                      <Image src={product.imageUrl} alt={product.name} fill className="object-contain p-4 transition duration-300 group-hover:scale-105" />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center">
+                        <span className="text-3xl opacity-20">📦</span>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-[#004874]/0 transition group-hover:bg-[#004874]/4" />
+                  </div>
+                  <div className="flex flex-1 flex-col p-4">
+                    {product.brand && <p className="mb-1 text-[9px] font-semibold uppercase tracking-[0.3em] text-[#C8A96E]">{product.brand}</p>}
+                    <h3 className="text-sm font-semibold leading-5 text-[#0D1B2A] transition group-hover:text-[#004874]">{product.name}</h3>
+                    {product.shortDescription && <p className="mt-1.5 flex-1 line-clamp-2 text-xs leading-5 text-[#4A6274]">{product.shortDescription}</p>}
+                    <div className="mt-3 flex items-center justify-between">
+                      <span className="text-[9px] font-semibold uppercase tracking-[0.3em] text-[#004874]">View details</span>
+                      <svg className="h-3.5 w-3.5 text-[#004874]/40 transition group-hover:translate-x-0.5 group-hover:text-[#004874]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
                     </div>
-                  ) : (
-                    <div className="mb-4 flex h-40 w-full items-center justify-center rounded-2xl bg-[#004874]/5">
-                      <span className="text-[10px] uppercase tracking-widest text-[#004874]/30">No image</span>
-                    </div>
-                  )}
-                  <h3 className="text-base font-semibold text-[#0D1B2A] transition group-hover:text-[#004874]">{product.name}</h3>
-                  {product.brand && <p className="mt-1 text-xs text-[#004874]/60">{product.brand}</p>}
-                  {product.shortDescription && <p className="mt-2 line-clamp-2 text-sm leading-5 text-[#4A6274]">{product.shortDescription}</p>}
-                  <p className="mt-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#004874]">View details &rarr;</p>
+                  </div>
                 </Link>
               ))}
             </div>
