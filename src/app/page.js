@@ -5,211 +5,226 @@ import SiteShell from "./_components/site-shell";
 
 const services = [
   {
+    icon: "📡",
     tag: "Distribution",
     title: "Product Distribution",
     description:
       "We supply WISI broadcast and signal distribution equipment to system integrators, contractors, and operators across Thailand — with local stock and fast fulfilment.",
-    delay: "100ms",
+    delay: "0ms",
   },
   {
+    icon: "🛠️",
     tag: "Consultation",
     title: "Technical Consultation",
     description:
       "Our team works with you from the design stage — reviewing system requirements, recommending the right products, and ensuring everything fits your environment.",
-    delay: "200ms",
+    delay: "80ms",
   },
   {
+    icon: "🤝",
     tag: "Support",
     title: "After-Sales Support",
     description:
       "We stay engaged after delivery. Whether you need configuration guidance, spare parts, or troubleshooting, we are a direct line away.",
-    delay: "300ms",
+    delay: "160ms",
   },
+];
+
+const pillars = [
+  { value: "WISI", label: "European Quality" },
+  { value: "Local", label: "Thai Support Team" },
+  { value: "Direct", label: "Authorised Rep" },
 ];
 
 export default function Home() {
   return (
     <SiteShell>
       <SiteHeader />
-      <main className="relative pt-28">
+      <main className="relative overflow-hidden">
 
-        {/* Hero */}
-        <section className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 pb-16 pt-12 sm:px-10 lg:flex-row lg:items-center">
-          {/* Left */}
-          <div className="flex-1">
-            <p
-              className="text-xs font-semibold uppercase tracking-[0.4em] text-[#C8A96E] animate-fade-up"
-              style={{ animationDelay: "0ms" }}
-            >
-              WISI Thailand
-            </p>
+        {/* ── Hero ─────────────────────────────────────── */}
+        <section className="relative min-h-[92vh] flex items-center">
+          {/* Background gradient blobs */}
+          <div className="pointer-events-none absolute inset-0 -z-10">
+            <div className="absolute -top-32 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[#004874]/8 blur-[120px]" />
+            <div className="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-[#C8A96E]/10 blur-[100px]" />
+          </div>
+
+          <div className="mx-auto w-full max-w-7xl px-6 pb-16 pt-28 sm:px-10">
+            {/* Top badge */}
+            <div className="animate-fade-up flex justify-center" style={{ animationDelay: "0ms" }}>
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#004874]/20 bg-white/70 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.35em] text-[#004874] shadow-sm backdrop-blur">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#C8A96E]" />
+                Authorised WISI Distributor — Thailand
+              </span>
+            </div>
+
+            {/* Heading */}
             <h1
-              className={`${cormorant.className} mt-4 text-4xl font-semibold leading-tight text-[#0D1B2A] sm:text-5xl lg:text-6xl animate-fade-up`}
+              className={`${cormorant.className} animate-fade-up mx-auto mt-6 max-w-4xl text-center text-5xl font-bold leading-[1.15] text-[#0D1B2A] sm:text-6xl lg:text-7xl`}
               style={{ animationDelay: "80ms" }}
             >
-              Delivering broadcast and signal distribution solutions across Thailand.
+              Broadcast &amp; Signal<br />
+              <span className="text-[#004874]">Infrastructure</span> for Thailand.
             </h1>
+
             <p
-              className="mt-5 max-w-xl text-base leading-8 text-[#4A6274] animate-fade-up"
+              className="animate-fade-up mx-auto mt-6 max-w-2xl text-center text-base leading-8 text-[#4A6274] sm:text-lg"
               style={{ animationDelay: "160ms" }}
             >
-              WISI Thailand is the authorised representative of WISI products. We support system integrators, broadcasters, and hospitality operators with reliable, future-ready infrastructure.
+              WISI Thailand supports system integrators, broadcasters, and hospitality operators with reliable, European-quality WISI products — backed by a local team.
             </p>
+
+            {/* CTA buttons */}
             <div
-              className="mt-8 flex flex-col gap-3 sm:flex-row animate-fade-up"
+              className="animate-fade-up mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
               style={{ animationDelay: "240ms" }}
             >
               <Link
                 href="/products"
-                className="rounded-full bg-[#004874] px-6 py-3 text-xs font-semibold uppercase tracking-[0.32em] text-white transition hover:bg-[#003558]"
+                className="rounded-xl bg-[#004874] px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-[0_6px_24px_rgba(0,72,116,0.4)] transition hover:bg-[#003558] hover:shadow-[0_8px_28px_rgba(0,72,116,0.5)]"
               >
-                View Products
+                Explore Products
               </Link>
               <Link
                 href="/contact"
-                className="rounded-full border border-[#004874]/25 px-6 py-3 text-xs font-semibold uppercase tracking-[0.32em] text-[#004874] transition hover:border-[#004874]/60"
+                className="rounded-xl border border-[#004874]/25 bg-white/80 px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.3em] text-[#004874] backdrop-blur transition hover:border-[#004874]/50 hover:bg-white"
               >
-                Contact Us
+                Talk to Us
               </Link>
             </div>
 
-            {/* Stats row */}
+            {/* Pillars row */}
             <div
-              className="mt-10 flex flex-wrap items-center gap-8 text-sm text-[#4A6274] animate-fade-up"
+              className="animate-fade-up mx-auto mt-14 flex max-w-lg flex-wrap items-center justify-center gap-6 sm:gap-10"
               style={{ animationDelay: "320ms" }}
             >
-              <div>
-                <p className="text-2xl font-semibold text-[#004874]">WISI</p>
-                <p>European Quality</p>
-              </div>
-              <div className="h-8 w-px bg-[#004874]/15" />
-              <div>
-                <p className="text-2xl font-semibold text-[#004874]">Local</p>
-                <p>Thai Support Team</p>
-              </div>
-              <div className="h-8 w-px bg-[#004874]/15" />
-              <div>
-                <p className="text-2xl font-semibold text-[#004874]">Direct</p>
-                <p>Authorised Rep</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Right — Quick Contact Card */}
-          <div
-            className="flex-1 animate-fade-up"
-            style={{ animationDelay: "200ms" }}
-          >
-            <div className="relative overflow-hidden rounded-[32px] border border-white/70 bg-white/85 p-8 shadow-[0_25px_70px_rgba(0,72,116,0.15)] backdrop-blur">
-              <div className="absolute right-6 top-6 h-28 w-28 rounded-full bg-[#C8A96E]/20 blur-2xl" />
-              <div className="absolute bottom-4 left-4 h-32 w-32 rounded-full bg-[#004874]/10 blur-2xl" />
-
-              <div className="relative">
-                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#004874]/60">
-                  Get in touch
-                </p>
-                <h2 className={`${cormorant.className} mt-3 text-2xl font-semibold text-[#0D1B2A]`}>
-                  Ready to discuss a project?
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-[#4A6274]">
-                  Reach out directly or send us a message and we will get back to you promptly.
-                </p>
-
-                <div className="mt-6 space-y-3">
-                  <a
-                    href="tel:+6621234567"
-                    className="flex items-center gap-3 rounded-2xl border border-[#004874]/10 bg-[#F4F7FA] px-4 py-3 text-sm text-[#004874] transition hover:bg-[#e8eef4]"
-                  >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#004874]/10 text-base">📞</span>
-                    <div>
-                      <p className="text-[10px] uppercase tracking-[0.3em] text-[#004874]/50">Phone</p>
-                      <p className="font-semibold">+66 2 XXX XXXX</p>
-                    </div>
-                  </a>
-                  <a
-                    href="mailto:info@wisithailand.co.th"
-                    className="flex items-center gap-3 rounded-2xl border border-[#004874]/10 bg-white px-4 py-3 text-sm text-[#004874] transition hover:bg-[#F4F7FA]"
-                  >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#004874]/10 text-base">✉️</span>
-                    <div>
-                      <p className="text-[10px] uppercase tracking-[0.3em] text-[#004874]/50">Email</p>
-                      <p className="font-semibold">info@wisithailand.co.th</p>
-                    </div>
-                  </a>
-                </div>
-
-                <div className="mt-5 flex items-center justify-between rounded-2xl bg-[#004874] px-4 py-3 text-white">
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.3em] text-white/60">Office Hours</p>
-                    <p className="mt-0.5 text-sm font-semibold">Mon – Fri: 08:30 – 17:30</p>
+              {pillars.map((p, i) => (
+                <div key={p.value} className="flex items-center gap-3">
+                  {i !== 0 && <span className="hidden h-6 w-px bg-[#004874]/15 sm:block" />}
+                  <div className="text-center">
+                    <p className="text-xl font-bold text-[#004874]">{p.value}</p>
+                    <p className="text-[11px] text-[#4A6274]">{p.label}</p>
                   </div>
-                  <span className="rounded-full bg-white/15 px-3 py-1 text-xs text-white/80">Bangkok, TH</span>
                 </div>
-
-                <Link
-                  href="/contact"
-                  className="mt-5 block rounded-full bg-[#004874] px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.32em] text-white transition hover:bg-[#003558]"
-                >
-                  Send Us a Message
-                </Link>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* What We Do */}
-        <section className="mx-auto w-full max-w-6xl px-6 pb-16 sm:px-10">
-          <div className="flex flex-col gap-3 animate-fade-up" style={{ animationDelay: "0ms" }}>
-            <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#004874]/60">What We Do</p>
-            <h2 className={`${cormorant.className} text-3xl font-semibold text-[#0D1B2A]`}>
+        {/* ── What We Do ───────────────────────────────── */}
+        <section className="mx-auto w-full max-w-7xl px-6 pb-20 sm:px-10">
+          <div className="mb-12 text-center animate-fade-up" style={{ animationDelay: "0ms" }}>
+            <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#C8A96E]">What We Do</p>
+            <h2 className={`${cormorant.className} mt-3 text-4xl font-bold text-[#0D1B2A]`}>
               More than a distributor.
             </h2>
-            <p className="max-w-2xl text-base leading-7 text-[#4A6274]">
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-[#4A6274]">
               We combine product supply with genuine technical know-how to make sure every deployment is the right one.
             </p>
           </div>
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
+
+          <div className="grid gap-6 md:grid-cols-3">
             {services.map((s) => (
               <div
                 key={s.tag}
-                className="rounded-3xl border border-white/70 bg-white/75 p-7 shadow-[0_18px_40px_rgba(0,72,116,0.09)] animate-fade-up"
+                className="group relative overflow-hidden rounded-2xl border border-[#004874]/10 bg-white p-7 shadow-[0_4px_24px_rgba(0,72,116,0.07)] transition hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,72,116,0.14)] animate-fade-up"
                 style={{ animationDelay: s.delay }}
               >
-                <span className="inline-block rounded-full border border-[#C8A96E]/40 bg-[#C8A96E]/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#C8A96E]">
+                {/* Top accent bar */}
+                <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-[#004874] to-[#C8A96E] opacity-0 transition group-hover:opacity-100" />
+
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#004874]/8 text-2xl">
+                  {s.icon}
+                </div>
+                <span className="inline-block rounded-full bg-[#C8A96E]/15 px-3 py-0.5 text-[9px] font-semibold uppercase tracking-[0.3em] text-[#C8A96E]">
                   {s.tag}
                 </span>
-                <h3 className={`${cormorant.className} mt-4 text-xl font-semibold text-[#0D1B2A]`}>{s.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-[#4A6274]">{s.description}</p>
+                <h3 className={`${cormorant.className} mt-3 text-xl font-bold text-[#0D1B2A]`}>{s.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#4A6274]">{s.description}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* CTA Banner */}
-        <section className="mx-auto w-full max-w-6xl px-6 pb-24 sm:px-10">
-          <div
-            className="rounded-[36px] bg-[#004874] p-8 text-white shadow-[0_25px_70px_rgba(0,72,116,0.3)] sm:p-12 animate-fade-up"
-            style={{ animationDelay: "160ms" }}
-          >
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#C8A96E]">Let&rsquo;s work together</p>
-                <h2 className={`${cormorant.className} mt-4 text-3xl font-semibold`}>
-                  Ready to discuss your next project?
+        {/* ── Why WISI strip ───────────────────────────── */}
+        <section className="mx-auto w-full max-w-7xl px-6 pb-20 sm:px-10">
+          <div className="overflow-hidden rounded-2xl bg-[#F0F5F9] p-8 sm:p-12">
+            <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+              <div className="animate-fade-up" style={{ animationDelay: "0ms" }}>
+                <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#004874]/60">Why WISI</p>
+                <h2 className={`${cormorant.className} mt-3 text-3xl font-bold text-[#0D1B2A] lg:text-4xl`}>
+                  Trusted across Europe.<br />Now available in Thailand.
                 </h2>
-                <p className="mt-4 max-w-xl text-sm leading-6 text-white/70">
-                  Whether you need product information, technical guidance, or a custom solution — our team is here for you.
+                <p className="mt-4 text-sm leading-7 text-[#4A6274]">
+                  WISI is a German manufacturer with over 70 years of expertise in broadcast, headend, and fibre optic signal distribution. Every product is engineered for long-term reliability in demanding environments.
                 </p>
+                <Link
+                  href="/products"
+                  className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#004874] transition hover:gap-3"
+                >
+                  Browse our product range
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
               </div>
-              <Link
-                href="/contact"
-                className="inline-block shrink-0 rounded-full border border-[#C8A96E] bg-transparent px-7 py-3 text-xs font-semibold uppercase tracking-[0.32em] text-[#C8A96E] transition hover:bg-[#C8A96E] hover:text-[#004874]"
-              >
-                Get in Touch
-              </Link>
+
+              <div className="grid grid-cols-2 gap-4 animate-fade-up" style={{ animationDelay: "80ms" }}>
+                {[
+                  { label: "70+", desc: "Years of WISI engineering" },
+                  { label: "🇩🇪", desc: "German-engineered products" },
+                  { label: "Local", desc: "Bangkok-based support" },
+                  { label: "Direct", desc: "Authorised representative" },
+                ].map((item) => (
+                  <div key={item.label} className="rounded-xl bg-white p-5 shadow-sm">
+                    <p className="text-2xl font-bold text-[#004874]">{item.label}</p>
+                    <p className="mt-1 text-xs text-[#4A6274]">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
+
+        {/* ── CTA Banner ───────────────────────────────── */}
+        <section className="mx-auto w-full max-w-7xl px-6 pb-24 sm:px-10">
+          <div
+            className="relative overflow-hidden rounded-2xl bg-[#004874] p-8 text-white sm:p-12 animate-fade-up"
+            style={{ animationDelay: "0ms" }}
+          >
+            {/* Decorative blobs */}
+            <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/5" />
+            <div className="pointer-events-none absolute -bottom-10 left-10 h-40 w-40 rounded-full bg-[#C8A96E]/20" />
+
+            <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#C8A96E]">Let&rsquo;s work together</p>
+                <h2 className={`${cormorant.className} mt-4 text-3xl font-bold lg:text-4xl`}>
+                  Ready to discuss your next project?
+                </h2>
+                <p className="mt-3 max-w-lg text-sm leading-6 text-white/70">
+                  Whether you need product information, technical guidance, or a custom solution — our team is here for you.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+                <Link
+                  href="/contact"
+                  className="rounded-xl border border-white/30 bg-white/10 px-7 py-3 text-center text-xs font-semibold uppercase tracking-[0.3em] text-white backdrop-blur transition hover:bg-white/20"
+                >
+                  Send a Message
+                </Link>
+                <a
+                  href="tel:0227294225"
+                  className="rounded-xl bg-[#C8A96E] px-7 py-3 text-center text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-[#b8975e]"
+                >
+                  Call Us Now
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
     </SiteShell>
   );
