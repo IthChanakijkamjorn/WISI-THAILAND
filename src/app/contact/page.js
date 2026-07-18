@@ -65,15 +65,11 @@ export default function ContactPage() {
               <div className="mt-6 space-y-4 text-sm">
                 <div>
                   <p className="text-xs uppercase tracking-[0.3em] text-[#004874]/50">Email</p>
-                  <p className="mt-1 font-semibold text-[#0D1B2A]">info@wisithailand.co.th</p>
+                  <p className="mt-1 font-semibold text-[#0D1B2A]">admin@wisithailand.com</p>
                 </div>
                 <div>
                   <p className="text-xs uppercase tracking-[0.3em] text-[#004874]/50">Phone</p>
-                  <p className="mt-1 font-semibold text-[#0D1B2A]">+66 2 XXX XXXX</p>
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.3em] text-[#004874]/50">Address</p>
-                  <p className="mt-1 font-semibold text-[#0D1B2A]">Bangkok, Thailand</p>
+                  <p className="mt-1 font-semibold text-[#0D1B2A]">02 729 4225-6</p>
                 </div>
               </div>
 
