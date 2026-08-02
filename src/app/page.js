@@ -3,7 +3,10 @@ import Image from "next/image";
 import { cormorant } from "./_components/brand-fonts";
 import SiteHeader from "./_components/site-header";
 import SiteShell from "./_components/site-shell";
-import anniversaryIcon from "./100-years-wisi-icon.png";
+import anniversaryIcon from "./_components/icons/100-years-wisi-icon.png";
+import iconDistribution from "./_components/icons/icon-distribution.png";
+import iconConsultation from "./_components/icons/icon-consultation.png";
+import iconSupport from "./_components/icons/icon-support.png";
 
 const services = [
   {
@@ -11,11 +14,7 @@ const services = [
     title: "Product Distribution",
     description:
       "We supply WISI broadcast and signal distribution equipment to system integrators, contractors, and operators across Thailand — with local stock and fast fulfilment.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.2} className="h-24 w-24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25 12 3 3 8.25m18 0-9 5.25m9-5.25v7.5L12 21m0-7.5L3 8.25m9 5.25V21m0-7.5L3 8.25m0 0v7.5L12 21" />
-      </svg>
-    ),
+    icon: iconDistribution,
     delay: "0ms",
   },
   {
@@ -23,11 +22,7 @@ const services = [
     title: "Technical Consultation",
     description:
       "Our team works with you from the design stage — reviewing system requirements, recommending the right products, and ensuring everything fits your environment.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.2} className="h-24 w-24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.66l-3.276 3.276a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.024 4.318c.044.583.02 1.196-.14 1.743Z" />
-      </svg>
-    ),
+    icon: iconConsultation,
     delay: "80ms",
   },
   {
@@ -35,11 +30,7 @@ const services = [
     title: "After-Sales Support",
     description:
       "We stay engaged after delivery. Whether you need configuration guidance, spare parts, or troubleshooting, we are a direct line away.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.2} className="h-24 w-24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
-      </svg>
-    ),
+    icon: iconSupport,
     delay: "160ms",
   },
 ];
@@ -173,15 +164,15 @@ export default function Home() {
                 {/* Fading white overlay from top-right */}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-bl from-white/25 via-white/5 to-transparent" />
 
-                {/* Icon overlay, top-right, large */}
-                <div className="pointer-events-none absolute -right-6 -top-6 text-white/15">
-                  {s.icon}
+                {/* Icon overlay, top-right, inset within card */}
+                <div className="pointer-events-none absolute right-4 top-4 h-14 w-14 opacity-90">
+                  <Image src={s.icon} alt="" className="h-full w-full object-contain" />
                 </div>
 
                 <span className="relative inline-block rounded-full bg-[#C8A96E]/20 px-3 py-0.5 text-[9px] font-semibold uppercase tracking-[0.3em] text-[#C8A96E]">
                   {s.tag}
                 </span>
-                <h3 className={`${cormorant.className} relative mt-3 text-xl font-bold text-white`}>{s.title}</h3>
+                <h3 className={`${cormorant.className} relative mt-3 max-w-[75%] text-xl font-bold text-white`}>{s.title}</h3>
                 <p className="relative mt-2 text-sm leading-6 text-white/70">{s.description}</p>
               </div>
             ))}
