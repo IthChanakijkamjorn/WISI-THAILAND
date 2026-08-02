@@ -7,27 +7,39 @@ import anniversaryIcon from "./100-years-wisi-icon.png";
 
 const services = [
   {
-    icon: "📡",
     tag: "Distribution",
     title: "Product Distribution",
     description:
       "We supply WISI broadcast and signal distribution equipment to system integrators, contractors, and operators across Thailand — with local stock and fast fulfilment.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-9 w-9">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25 12 3 3 8.25m18 0-9 5.25m9-5.25v7.5L12 21m0-7.5L3 8.25m9 5.25V21m0-7.5L3 8.25m0 0v7.5L12 21" />
+      </svg>
+    ),
     delay: "0ms",
   },
   {
-    icon: "🛠️",
     tag: "Consultation",
     title: "Technical Consultation",
     description:
       "Our team works with you from the design stage — reviewing system requirements, recommending the right products, and ensuring everything fits your environment.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-9 w-9">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.66l-3.276 3.276a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.024 4.318c.044.583.02 1.196-.14 1.743Z" />
+      </svg>
+    ),
     delay: "80ms",
   },
   {
-    icon: "🤝",
     tag: "Support",
     title: "After-Sales Support",
     description:
       "We stay engaged after delivery. Whether you need configuration guidance, spare parts, or troubleshooting, we are a direct line away.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-9 w-9">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+      </svg>
+    ),
     delay: "160ms",
   },
 ];
@@ -155,20 +167,22 @@ export default function Home() {
             {services.map((s) => (
               <div
                 key={s.tag}
-                className="group relative overflow-hidden rounded-2xl border border-[#004874]/10 bg-white p-7 shadow-[0_4px_24px_rgba(0,72,116,0.07)] transition hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,72,116,0.14)]"
+                className="relative overflow-hidden rounded-2xl bg-[#00385E] p-7 shadow-[0_4px_24px_rgba(0,56,94,0.18)]"
                 style={{ animationDelay: s.delay }}
               >
-                {/* Top accent bar */}
-                <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-[#004874] to-[#C8A96E] opacity-0 transition group-hover:opacity-100" />
+                {/* Fading white overlay from top-right */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-bl from-white/25 via-white/5 to-transparent" />
 
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#004874]/8 text-2xl">
+                {/* Icon overlay, top-right */}
+                <div className="pointer-events-none absolute -right-3 -top-3 text-white/20">
                   {s.icon}
                 </div>
-                <span className="inline-block rounded-full bg-[#C8A96E]/15 px-3 py-0.5 text-[9px] font-semibold uppercase tracking-[0.3em] text-[#C8A96E]">
+
+                <span className="relative inline-block rounded-full bg-[#C8A96E]/20 px-3 py-0.5 text-[9px] font-semibold uppercase tracking-[0.3em] text-[#C8A96E]">
                   {s.tag}
                 </span>
-                <h3 className={`${cormorant.className} mt-3 text-xl font-bold text-[#0D1B2A]`}>{s.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#4A6274]">{s.description}</p>
+                <h3 className={`${cormorant.className} relative mt-3 text-xl font-bold text-white`}>{s.title}</h3>
+                <p className="relative mt-2 text-sm leading-6 text-white/70">{s.description}</p>
               </div>
             ))}
           </div>
