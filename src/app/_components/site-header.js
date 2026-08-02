@@ -35,19 +35,19 @@ export default function SiteHeader() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 bg-[#003558] ${
           scrolled
-            ? "bg-white/95 shadow-[0_2px_24px_rgba(0,72,116,0.10)] backdrop-blur-md"
-            : "bg-white/80 backdrop-blur-md"
+            ? "shadow-[0_4px_30px_rgba(0,20,40,0.35)]"
+            : "shadow-[0_2px_16px_rgba(0,20,40,0.25)]"
         }`}
       >
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 sm:px-10">
           {/* Logo */}
           <Link
             href="/"
-            className={`${cormorant.className} flex items-center gap-2 text-xl font-bold tracking-wide text-[#0D1B2A]`}
+            className={`${cormorant.className} flex items-center gap-2 text-xl font-bold tracking-wide text-white`}
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#004874] text-xs font-black text-white">W</span>
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-xs font-black text-[#003558]">W</span>
             WISI Thailand
           </Link>
 
@@ -57,10 +57,10 @@ export default function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-xl px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] transition ${
+                className={`relative px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] transition ${
                   pathname === link.href
-                    ? "bg-[#004874]/10 text-[#004874]"
-                    : "text-[#4A6274] hover:bg-[#004874]/5 hover:text-[#004874]"
+                    ? "text-white after:absolute after:inset-x-4 after:-bottom-1 after:h-0.5 after:rounded-full after:bg-[#7FC7FF]"
+                    : "text-[#BFE0FF] hover:text-white"
                 }`}
               >
                 {link.label}
@@ -68,7 +68,7 @@ export default function SiteHeader() {
             ))}
             <Link
               href="/contact"
-              className="ml-3 rounded-xl bg-[#004874] px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.25em] text-white shadow-[0_4px_14px_rgba(0,72,116,0.35)] transition hover:bg-[#003558] hover:shadow-[0_6px_18px_rgba(0,72,116,0.45)]"
+              className="ml-3 rounded-full border border-white/70 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.25em] text-white transition hover:bg-white hover:text-[#003558]"
             >
               Contact
             </Link>
@@ -77,12 +77,12 @@ export default function SiteHeader() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setOpen((v) => !v)}
-            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-xl transition hover:bg-[#004874]/5 md:hidden"
+            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-xl transition hover:bg-white/10 md:hidden"
             aria-label="Toggle menu"
           >
-            <span className={`block h-0.5 w-5 rounded-full bg-[#0D1B2A] transition-all duration-300 ${open ? "translate-y-2 rotate-45" : ""}`} />
-            <span className={`block h-0.5 w-5 rounded-full bg-[#0D1B2A] transition-all duration-300 ${open ? "opacity-0" : ""}`} />
-            <span className={`block h-0.5 w-5 rounded-full bg-[#0D1B2A] transition-all duration-300 ${open ? "-translate-y-2 -rotate-45" : ""}`} />
+            <span className={`block h-0.5 w-5 rounded-full bg-white transition-all duration-300 ${open ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`block h-0.5 w-5 rounded-full bg-white transition-all duration-300 ${open ? "opacity-0" : ""}`} />
+            <span className={`block h-0.5 w-5 rounded-full bg-white transition-all duration-300 ${open ? "-translate-y-2 -rotate-45" : ""}`} />
           </button>
         </div>
       </header>
@@ -93,7 +93,7 @@ export default function SiteHeader() {
           open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={() => setOpen(false)}
-        style={{ background: "rgba(13,27,42,0.45)", backdropFilter: "blur(4px)" }}
+        style={{ background: "rgba(0,26,46,0.55)", backdropFilter: "blur(4px)" }}
       />
 
       {/* Mobile menu panel */}
@@ -102,21 +102,21 @@ export default function SiteHeader() {
           open ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0 pointer-events-none"
         }`}
       >
-        <nav className="mx-4 mt-2 overflow-hidden rounded-2xl border border-white/60 bg-white shadow-[0_20px_60px_rgba(0,72,116,0.18)]">
+        <nav className="mx-4 mt-2 overflow-hidden rounded-2xl border border-white/10 bg-[#003558] shadow-[0_20px_60px_rgba(0,20,40,0.45)]">
           {navLinks.map((link, i) => (
             <Link
               key={link.href}
               href={link.href}
               className={`flex items-center justify-between px-6 py-4 text-sm font-semibold uppercase tracking-[0.25em] transition ${
-                i !== navLinks.length - 1 ? "border-b border-[#004874]/8" : ""
+                i !== navLinks.length - 1 ? "border-b border-white/10" : ""
               } ${
                 pathname === link.href
-                  ? "bg-[#004874]/5 text-[#004874]"
-                  : "text-[#4A6274] hover:bg-[#004874]/5 hover:text-[#004874]"
-              } ${link.href === "/contact" ? "!text-[#004874] font-bold" : ""}`}
+                  ? "bg-white/10 text-white"
+                  : "text-[#BFE0FF] hover:bg-white/10 hover:text-white"
+              } ${link.href === "/contact" ? "!text-white font-bold" : ""}`}
             >
               {link.label}
-              <svg className="h-4 w-4 opacity-30" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <svg className="h-4 w-4 opacity-40" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </Link>
