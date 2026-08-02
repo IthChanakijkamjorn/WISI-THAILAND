@@ -45,24 +45,26 @@ export default function Home() {
       <main className="relative overflow-hidden">
 
         {/* ── 100 Years Anniversary Banner ────────────────── */}
-        <section className="relative mt-16 overflow-hidden bg-gradient-to-r from-[#FBF6EC] via-[#F5EBD7] to-[#FBF6EC]">
+        <section className="relative mt-16 overflow-hidden bg-[#00385E]">
           <div className="pointer-events-none absolute inset-0 -z-10">
-            <div className="absolute -top-24 right-0 h-72 w-72 rounded-full bg-[#004874]/5 blur-[100px]" />
-            <div className="absolute -bottom-16 left-0 h-64 w-64 rounded-full bg-[#C8A96E]/15 blur-[100px]" />
+            <div className="absolute -top-24 right-0 h-72 w-72 rounded-full bg-white/5 blur-[100px]" />
+            <div className="absolute -bottom-16 left-0 h-64 w-64 rounded-full bg-[#4CC3F0]/10 blur-[100px]" />
           </div>
           <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-6 py-12 text-center sm:px-10 lg:flex-row lg:justify-center lg:gap-10 lg:text-left animate-fade-up">
-            <Image
-              src={anniversaryIcon}
-              alt="WISI 100 Years Anniversary"
-              className="h-36 w-36 shrink-0 object-contain drop-shadow-[0_8px_24px_rgba(0,56,94,0.25)] sm:h-44 sm:w-44"
-              priority
-            />
+            <div className="shrink-0 rounded-full bg-white p-3 shadow-[0_10px_32px_rgba(0,0,0,0.25)] sm:p-4">
+              <Image
+                src={anniversaryIcon}
+                alt="WISI 100 Years Anniversary"
+                className="h-32 w-32 object-contain sm:h-40 sm:w-40"
+                priority
+              />
+            </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#C8A96E]">Celebrating a Milestone</p>
-              <h2 className={`${cormorant.className} mt-2 text-2xl font-bold text-[#00385E] sm:text-3xl`}>
+              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#4CC3F0]">Celebrating a Milestone</p>
+              <h2 className={`${cormorant.className} mt-2 text-2xl font-bold text-white sm:text-3xl`}>
                 100 Years of WISI Engineering Excellence
               </h2>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-[#4A6274]">
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-white/70">
                 Since 1926, WISI has been engineering trusted broadcast and signal distribution technology across Europe — and we&rsquo;re proud to bring a century of that expertise to Thailand.
               </p>
             </div>
