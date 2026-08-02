@@ -50,15 +50,13 @@ export default function Home() {
             <div className="absolute -top-24 right-0 h-72 w-72 rounded-full bg-white/5 blur-[100px]" />
             <div className="absolute -bottom-16 left-0 h-64 w-64 rounded-full bg-[#4CC3F0]/10 blur-[100px]" />
           </div>
-          <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-6 py-12 text-center sm:px-10 lg:flex-row lg:justify-center lg:gap-10 lg:text-left animate-fade-up">
-            <div className="shrink-0 rounded-full bg-white p-3 shadow-[0_10px_32px_rgba(0,0,0,0.25)] sm:p-4">
-              <Image
-                src={anniversaryIcon}
-                alt="WISI 100 Years Anniversary"
-                className="h-32 w-32 object-contain sm:h-40 sm:w-40"
-                priority
-              />
-            </div>
+          <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-6 py-10 text-center sm:px-10 lg:flex-row lg:justify-center lg:gap-8 lg:text-left animate-fade-up">
+            <Image
+              src={anniversaryIcon}
+              alt="WISI 100 Years Anniversary"
+              className="h-40 w-40 shrink-0 object-contain sm:h-48 sm:w-48"
+              priority
+            />
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#4CC3F0]">Celebrating a Milestone</p>
               <h2 className={`${cormorant.className} mt-2 text-2xl font-bold text-white sm:text-3xl`}>
