@@ -19,7 +19,7 @@ const contactDetails = [
   {
     icon: (
       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.163 21 3 14.837 3 7V5z" />
       </svg>
     ),
     label: "Phone",
@@ -36,6 +36,16 @@ const contactDetails = [
     label: "Address",
     value: "Bangkok, Thailand",
     href: "https://maps.google.com/?q=Bangkok,Thailand",
+  },
+  {
+    icon: (
+      <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+    label: "Office Hours",
+    value: "Mon – Fri: 08:30 – 17:30",
+    href: undefined,
   },
 ];
 
@@ -94,36 +104,38 @@ export default function ContactPage() {
         <section className="border-b border-[#004874]/8 bg-white">
           <div className="mx-auto w-full max-w-7xl px-6 py-6 sm:px-10">
             <div className="flex flex-wrap gap-3">
-              {contactDetails.map((c) => (
-                <a
-                  key={c.label}
-                  href={c.href}
-                  target={c.label === "Address" ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 rounded-xl border border-[#004874]/10 bg-[#F7FAFC] px-4 py-3 text-sm transition hover:border-[#004874]/30 hover:bg-white"
-                >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#004874]/8 text-[#004874]">
-                    {c.icon}
-                  </span>
-                  <div>
-                    <p className="text-[9px] font-semibold uppercase tracking-[0.3em] text-[#004874]/50">{c.label}</p>
-                    <p className="font-semibold text-[#0D1B2A]">{c.value}</p>
+              {contactDetails.map((c) =>
+                c.href ? (
+                  <a
+                    key={c.label}
+                    href={c.href}
+                    target={c.label === "Address" ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 rounded-xl border border-[#004874]/10 bg-[#F7FAFC] px-4 py-3 text-sm transition hover:border-[#004874]/30 hover:bg-white"
+                  >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#004874]/8 text-[#004874]">
+                      {c.icon}
+                    </span>
+                    <div>
+                      <p className="text-[9px] font-semibold uppercase tracking-[0.3em] text-[#004874]/50">{c.label}</p>
+                      <p className="font-semibold text-[#0D1B2A]">{c.value}</p>
+                    </div>
+                  </a>
+                ) : (
+                  <div
+                    key={c.label}
+                    className="flex items-center gap-3 rounded-xl border border-[#004874]/10 bg-[#F7FAFC] px-4 py-3 text-sm"
+                  >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#004874]/8 text-[#004874]">
+                      {c.icon}
+                    </span>
+                    <div>
+                      <p className="text-[9px] font-semibold uppercase tracking-[0.3em] text-[#004874]/50">{c.label}</p>
+                      <p className="font-semibold text-[#0D1B2A]">{c.value}</p>
+                    </div>
                   </div>
-                </a>
-              ))}
-
-              {/* Office hours chip */}
-              <div className="flex items-center gap-3 rounded-xl border border-[#004874]/10 bg-[#004874] px-4 py-3 text-sm text-white">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/15">
-                  <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </span>
-                <div>
-                  <p className="text-[9px] font-semibold uppercase tracking-[0.3em] text-white/60">Office Hours</p>
-                  <p className="font-semibold">Mon – Fri: 08:30 – 17:30</p>
-                </div>
-              </div>
+                )
+              )}
             </div>
           </div>
         </section>
@@ -148,7 +160,7 @@ export default function ContactPage() {
                     type="text"
                     required
                     placeholder="Your name"
-                    className="mt-1 w-full rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40 focus:bg-white focus:ring-2 focus:ring-[#004874]/10"
+                    className="mt-1 w-full rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40"
                   />
                 </label>
                 <label className="flex flex-col gap-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#004874]/70">
@@ -158,7 +170,7 @@ export default function ContactPage() {
                     type="email"
                     required
                     placeholder="you@example.com"
-                    className="mt-1 w-full rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40 focus:bg-white focus:ring-2 focus:ring-[#004874]/10"
+                    className="mt-1 w-full rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40"
                   />
                 </label>
                 <label className="flex flex-col gap-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#004874]/70">
@@ -167,14 +179,14 @@ export default function ContactPage() {
                     name="company"
                     type="text"
                     placeholder="Company name"
-                    className="mt-1 w-full rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40 focus:bg-white focus:ring-2 focus:ring-[#004874]/10"
+                    className="mt-1 w-full rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40"
                   />
                 </label>
                 <label className="flex flex-col gap-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#004874]/70">
                   Inquiry Type
                   <select
                     name="inquiryType"
-                    className="mt-1 w-full rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40 focus:bg-white focus:ring-2 focus:ring-[#004874]/10"
+                    className="mt-1 w-full rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40"
                   >
                     <option>General Inquiry</option>
                     <option>Product Enquiry</option>
@@ -189,7 +201,7 @@ export default function ContactPage() {
                     required
                     rows={5}
                     placeholder="Tell us how we can help you."
-                    className="mt-1 w-full resize-none rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40 focus:bg-white focus:ring-2 focus:ring-[#004874]/10"
+                    className="mt-1 w-full resize-none rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40"
                   />
                 </label>
               </div>
@@ -197,7 +209,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-[#004874] px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-[0_4px_16px_rgba(0,72,116,0.3)] transition hover:bg-[#003558] disabled:opacity-50"
+                className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-[#004874] px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-[0_4px_16px_rgba(0,72,116,0.35)] transition hover:bg-[#003558] disabled:opacity-60"
               >
                 {status === "loading" ? (
                   <>
@@ -272,7 +284,7 @@ export default function ContactPage() {
           <div className="w-full overflow-hidden" style={{ height: "420px" }}>
             <iframe
               title="WISI Thailand Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.8!2d100.5!3d13.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBangkok%2C+Thailand!5e0!3m2!1sen!2sth!4v1234567890"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.8!2d100.5!3d13.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBangkok%2C+Thailand!5e0!3m2!1sen!2sth!4v1700000000000"
               width="100%"
               height="420"
               style={{ border: 0, display: "block" }}
