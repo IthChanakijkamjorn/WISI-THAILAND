@@ -45,24 +45,24 @@ export default function Home() {
       <main className="relative overflow-hidden">
 
         {/* ── 100 Years Anniversary Banner ────────────────── */}
-        <section className="relative mt-16 overflow-hidden bg-[#00385E]">
+        <section className="relative mt-16 overflow-hidden bg-gradient-to-r from-[#FBF6EC] via-[#F5EBD7] to-[#FBF6EC]">
           <div className="pointer-events-none absolute inset-0 -z-10">
-            <div className="absolute -top-24 right-0 h-72 w-72 rounded-full bg-white/5 blur-[100px]" />
-            <div className="absolute -bottom-16 left-0 h-64 w-64 rounded-full bg-[#4CC3F0]/10 blur-[100px]" />
+            <div className="absolute -top-24 right-0 h-72 w-72 rounded-full bg-[#004874]/5 blur-[100px]" />
+            <div className="absolute -bottom-16 left-0 h-64 w-64 rounded-full bg-[#C8A96E]/15 blur-[100px]" />
           </div>
-          <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-6 py-10 text-center sm:px-10 lg:flex-row lg:justify-center lg:gap-8 lg:text-left animate-fade-up">
+          <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-6 py-12 text-center sm:px-10 lg:flex-row lg:justify-center lg:gap-10 lg:text-left animate-fade-up">
             <Image
               src={anniversaryIcon}
               alt="WISI 100 Years Anniversary"
-              className="h-24 w-24 shrink-0 object-contain sm:h-28 sm:w-28"
+              className="h-36 w-36 shrink-0 object-contain drop-shadow-[0_8px_24px_rgba(0,56,94,0.25)] sm:h-44 sm:w-44"
               priority
             />
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#4CC3F0]">Celebrating a Milestone</p>
-              <h2 className={`${cormorant.className} mt-2 text-2xl font-bold text-white sm:text-3xl`}>
+              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#C8A96E]">Celebrating a Milestone</p>
+              <h2 className={`${cormorant.className} mt-2 text-2xl font-bold text-[#00385E] sm:text-3xl`}>
                 100 Years of WISI Engineering Excellence
               </h2>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-white/70">
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-[#4A6274]">
                 Since 1926, WISI has been engineering trusted broadcast and signal distribution technology across Europe — and we&rsquo;re proud to bring a century of that expertise to Thailand.
               </p>
             </div>
@@ -109,13 +109,13 @@ export default function Home() {
             >
               <Link
                 href="/products"
-                className="rounded-xl bg-[#004874] px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-[0_6px_24px_rgba(0,72,116,0.4)] transition hover:bg-[#003558] hover:-translate-y-0.5"
+                className="rounded-xl bg-[#004874] px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-[0_6px_24px_rgba(0,72,116,0.4)] transition hover:bg-[#003558] hover:shadow-[0_8px_28px_rgba(0,72,116,0.5)]"
               >
                 Explore Products
               </Link>
               <Link
                 href="/contact"
-                className="rounded-xl border border-[#004874]/25 bg-white/80 px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.3em] text-[#004874] backdrop-blur transition hover:border-[#004874]/50"
+                className="rounded-xl border border-[#004874]/25 bg-white/80 px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.3em] text-[#004874] backdrop-blur transition hover:border-[#004874]/40 hover:bg-white"
               >
                 Talk to Us
               </Link>
@@ -155,7 +155,7 @@ export default function Home() {
             {services.map((s) => (
               <div
                 key={s.tag}
-                className="group relative overflow-hidden rounded-2xl border border-[#004874]/10 bg-white p-7 shadow-[0_4px_24px_rgba(0,72,116,0.07)] transition hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,72,116,0.14)] animate-fade-up"
+                className="group relative overflow-hidden rounded-2xl border border-[#004874]/10 bg-white p-7 shadow-[0_4px_24px_rgba(0,72,116,0.07)] transition hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,72,116,0.14)]"
                 style={{ animationDelay: s.delay }}
               >
                 {/* Top accent bar */}
