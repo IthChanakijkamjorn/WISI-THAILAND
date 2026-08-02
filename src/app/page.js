@@ -1,7 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cormorant } from "./_components/brand-fonts";
 import SiteHeader from "./_components/site-header";
 import SiteShell from "./_components/site-shell";
+import anniversaryIcon from "./100-years-wisi-icon.png";
 
 const services = [
   {
@@ -42,7 +44,32 @@ export default function Home() {
       <SiteHeader />
       <main className="relative overflow-hidden">
 
-        {/* ── Hero ─────────────────────────────────────── */}
+        {/* ── 100 Years Anniversary Banner ────────────────── */}
+        <section className="relative mt-16 overflow-hidden bg-[#00385E]">
+          <div className="pointer-events-none absolute inset-0 -z-10">
+            <div className="absolute -top-24 right-0 h-72 w-72 rounded-full bg-white/5 blur-[100px]" />
+            <div className="absolute -bottom-16 left-0 h-64 w-64 rounded-full bg-[#4CC3F0]/10 blur-[100px]" />
+          </div>
+          <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-6 py-10 text-center sm:px-10 lg:flex-row lg:justify-center lg:gap-8 lg:text-left animate-fade-up">
+            <Image
+              src={anniversaryIcon}
+              alt="WISI 100 Years Anniversary"
+              className="h-24 w-24 shrink-0 object-contain sm:h-28 sm:w-28"
+              priority
+            />
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#4CC3F0]">Celebrating a Milestone</p>
+              <h2 className={`${cormorant.className} mt-2 text-2xl font-bold text-white sm:text-3xl`}>
+                100 Years of WISI Engineering Excellence
+              </h2>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-white/70">
+                Since 1926, WISI has been engineering trusted broadcast and signal distribution technology across Europe — and we&rsquo;re proud to bring a century of that expertise to Thailand.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Hero ───────────────────────── */}
         <section className="relative min-h-[92vh] flex items-center">
           {/* Background gradient blobs */}
           <div className="pointer-events-none absolute inset-0 -z-10">
@@ -50,7 +77,7 @@ export default function Home() {
             <div className="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-[#C8A96E]/10 blur-[100px]" />
           </div>
 
-          <div className="mx-auto w-full max-w-7xl px-6 pb-16 pt-28 sm:px-10">
+          <div className="mx-auto w-full max-w-7xl px-6 pb-16 pt-16 sm:px-10">
             {/* Top badge */}
             <div className="animate-fade-up flex justify-center" style={{ animationDelay: "0ms" }}>
               <span className="inline-flex items-center gap-2 rounded-full border border-[#004874]/20 bg-white/70 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.35em] text-[#004874] shadow-sm backdrop-blur">
@@ -82,13 +109,13 @@ export default function Home() {
             >
               <Link
                 href="/products"
-                className="rounded-xl bg-[#004874] px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-[0_6px_24px_rgba(0,72,116,0.4)] transition hover:bg-[#003558] hover:shadow-[0_8px_28px_rgba(0,72,116,0.5)]"
+                className="rounded-xl bg-[#004874] px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-[0_6px_24px_rgba(0,72,116,0.4)] transition hover:bg-[#003558] hover:-translate-y-0.5"
               >
                 Explore Products
               </Link>
               <Link
                 href="/contact"
-                className="rounded-xl border border-[#004874]/25 bg-white/80 px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.3em] text-[#004874] backdrop-blur transition hover:border-[#004874]/50 hover:bg-white"
+                className="rounded-xl border border-[#004874]/25 bg-white/80 px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.3em] text-[#004874] backdrop-blur transition hover:border-[#004874]/50"
               >
                 Talk to Us
               </Link>
@@ -112,7 +139,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── What We Do ───────────────────────────────── */}
+        {/* ── What We Do ────────────────── */}
         <section className="mx-auto w-full max-w-7xl px-6 pb-20 sm:px-10">
           <div className="mb-12 text-center animate-fade-up" style={{ animationDelay: "0ms" }}>
             <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#C8A96E]">What We Do</p>
@@ -147,7 +174,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── Why WISI strip ───────────────────────────── */}
+        {/* ── Why WISI strip ───────────────── */}
         <section className="mx-auto w-full max-w-7xl px-6 pb-20 sm:px-10">
           <div className="overflow-hidden rounded-2xl bg-[#F0F5F9] p-8 sm:p-12">
             <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
@@ -172,7 +199,7 @@ export default function Home() {
 
               <div className="grid grid-cols-2 gap-4 animate-fade-up" style={{ animationDelay: "80ms" }}>
                 {[
-                  { label: "70+", desc: "Years of WISI engineering" },
+                  { label: "100+", desc: "Years of WISI engineering" },
                   { label: "🇩🇪", desc: "German-engineered products" },
                   { label: "Local", desc: "Bangkok-based support" },
                   { label: "Direct", desc: "Authorised representative" },
@@ -187,7 +214,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── CTA Banner ───────────────────────────────── */}
+        {/* ── CTA Banner ────────────────── */}
         <section className="mx-auto w-full max-w-7xl px-6 pb-24 sm:px-10">
           <div
             className="relative overflow-hidden rounded-2xl bg-[#004874] p-8 text-white sm:p-12 animate-fade-up"
