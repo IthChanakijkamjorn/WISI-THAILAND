@@ -12,7 +12,7 @@ const services = [
     description:
       "We supply WISI broadcast and signal distribution equipment to system integrators, contractors, and operators across Thailand — with local stock and fast fulfilment.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-9 w-9">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.2} className="h-24 w-24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25 12 3 3 8.25m18 0-9 5.25m9-5.25v7.5L12 21m0-7.5L3 8.25m9 5.25V21m0-7.5L3 8.25m0 0v7.5L12 21" />
       </svg>
     ),
@@ -24,7 +24,7 @@ const services = [
     description:
       "Our team works with you from the design stage — reviewing system requirements, recommending the right products, and ensuring everything fits your environment.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-9 w-9">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.2} className="h-24 w-24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.66l-3.276 3.276a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.024 4.318c.044.583.02 1.196-.14 1.743Z" />
       </svg>
     ),
@@ -36,8 +36,8 @@ const services = [
     description:
       "We stay engaged after delivery. Whether you need configuration guidance, spare parts, or troubleshooting, we are a direct line away.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-9 w-9">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.2} className="h-24 w-24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
       </svg>
     ),
     delay: "160ms",
@@ -173,8 +173,8 @@ export default function Home() {
                 {/* Fading white overlay from top-right */}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-bl from-white/25 via-white/5 to-transparent" />
 
-                {/* Icon overlay, top-right */}
-                <div className="pointer-events-none absolute -right-3 -top-3 text-white/20">
+                {/* Icon overlay, top-right, large */}
+                <div className="pointer-events-none absolute -right-6 -top-6 text-white/15">
                   {s.icon}
                 </div>
 
