@@ -164,9 +164,20 @@ export default function Home() {
                 {/* Fading white overlay from top-right */}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-bl from-white/25 via-white/5 to-transparent" />
 
-                {/* Icon overlay, top-right, inset within card */}
-                <div className="pointer-events-none absolute right-4 top-4 h-14 w-14 opacity-90">
-                  <Image src={s.icon} alt="" className="h-full w-full object-contain" />
+                {/* Icon overlay, top-right, inset within card, fading white */}
+                <div
+                  className="pointer-events-none absolute right-4 top-4 h-14 w-14"
+                  style={{
+                    WebkitMaskImage: "linear-gradient(to bottom left, rgba(0,0,0,1), rgba(0,0,0,0.15))",
+                    maskImage: "linear-gradient(to bottom left, rgba(0,0,0,1), rgba(0,0,0,0.15))",
+                  }}
+                >
+                  <Image
+                    src={s.icon}
+                    alt=""
+                    className="h-full w-full object-contain"
+                    style={{ filter: "brightness(0) invert(1)" }}
+                  />
                 </div>
 
                 <span className="relative inline-block rounded-full bg-[#C8A96E]/20 px-3 py-0.5 text-[9px] font-semibold uppercase tracking-[0.3em] text-[#C8A96E]">
