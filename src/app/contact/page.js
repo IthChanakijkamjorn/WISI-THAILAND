@@ -35,7 +35,7 @@ const contactDetails = [
     ),
     label: "Address",
     value: "Bangkok, Thailand",
-    href: "https://maps.google.com/?q=Bangkok,Thailand",
+    href: "https://maps.google.com/?q=Expert+Electronic+Bangkok+Thailand",
   },
   {
     icon: (
@@ -237,6 +237,15 @@ export default function ContactPage() {
             {/* Info + tips */}
             <div className="flex flex-col gap-6 animate-fade-up" style={{ animationDelay: "80ms" }}>
               <div className="rounded-2xl border border-[#004874]/8 bg-white p-6 shadow-[0_4px_24px_rgba(0,72,116,0.07)]">
+                <h3 className={`${cormorant.className} text-xl font-bold text-[#0D1B2A]`}>Our Address</h3>
+                <p className="mt-3 text-sm leading-6 text-[#4A6274]">
+                  51/2 Soi Ramkhamhaeng 96,<br />
+                  Ramkhamhaeng Road, Saphan Sung District,<br />
+                  Bangkok, 10240
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-[#004874]/8 bg-white p-6 shadow-[0_4px_24px_rgba(0,72,116,0.07)]">
                 <h3 className={`${cormorant.className} text-xl font-bold text-[#0D1B2A]`}>Helpful to include</h3>
                 <ul className="mt-4 space-y-3">
                   {[
@@ -284,7 +293,7 @@ export default function ContactPage() {
           <div className="w-full overflow-hidden" style={{ height: "420px" }}>
             <iframe
               title="WISI Thailand Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d484.38609066924545!2d100.66875873523065!3d13.773522739164934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d617e3d712dc1%3A0x6ba8fa786858ff4b!2z4Lia4Lij4Li04Lip4Lix4LiXIOC5gOC4reC5h-C4geC4i-C5jOC5gOC4nuC4tOC4o-C5jOC4lyDguK3guLTguYDguKXguYfguITguYLguJfguKPguJnguLTguIQg4LmB4Lit4LiZ4LiU4LmMIOC4hOC4reC4oeC4oeC4ueC4meC4tOC5gOC4hOC4iuC4seC5iOC4mSDguIjguLPguIHguLHguJQ!5e0!3m2!1sth!2sth!4v1785722621308!5m2!1sth!2sth"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d484.38609066924545!2d100.66875873523065!3d13.773522739164934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d617e3d712dc1%3A0x6ba8fa786858ff4b!2z4Lia4Lij4Li04Lip4Lix4LiXIOC5gOC4reC5h-C4geC4i-C5jOC5gOC4nuC4tOC4o-C5jOC4lyDguK3guLTguYDguKXguYfguITguYLguJfguKPguJnguLTguIQg4LmB4Lit4LiZ4LiU4LmMIOC4hOC4reC4oeC4oeC4ueC4meC4tOC5gOC4hOC4iuC4seC5iOC4mSDguIjguLPguIGguLHguJQ!5e0!3m2!1sth!2sth!4v1785722621308!5m2!1sth!2sth"
               width="100%"
               height="420"
               style={{ border: 0, display: "block" }}
