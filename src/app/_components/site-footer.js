@@ -49,6 +49,7 @@ export default function SiteFooter() {
               {[
                 { label: "Home", href: "/" },
                 { label: "Products", href: "/products" },
+                { label: "Projects", href: "/projects" },
                 { label: "Contact", href: "/contact" },
               ].map((link) => (
                 <Link key={link.href} href={link.href} className="text-sm text-[#4A6274] transition hover:text-[#004874]">
