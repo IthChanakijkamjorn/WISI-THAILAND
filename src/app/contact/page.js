@@ -29,6 +29,17 @@ const contactDetails = [
   {
     icon: (
       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+    ),
+    label: "Address",
+    value: "Bangkok, Thailand",
+    href: "https://maps.google.com/?q=Expert+Electronic+Bangkok+Thailand",
+  },
+  {
+    icon: (
+      <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
@@ -111,6 +122,8 @@ export default function ContactPage() {
                   <a
                     key={c.label}
                     href={c.href}
+                    target={c.label === "Address" ? "_blank" : undefined}
+                    rel="noopener noreferrer"
                     className="flex items-center gap-3 rounded-xl border border-[#004874]/10 bg-[#F7FAFC] px-4 py-3 text-sm transition hover:border-[#004874]/30 hover:bg-white"
                   >
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#004874]/8 text-[#004874]">
@@ -244,6 +257,15 @@ export default function ContactPage() {
 
             {/* Info + tips */}
             <div className="flex flex-col gap-6 animate-fade-up" style={{ animationDelay: "80ms" }}>
+              <div className="rounded-2xl border border-[#004874]/8 bg-white p-6 shadow-[0_4px_24px_rgba(0,72,116,0.07)]">
+                <h3 className={`${cormorant.className} text-xl font-bold text-[#0D1B2A]`}>Our Address</h3>
+                <p className="mt-3 text-sm leading-6 text-[#4A6274]">
+                  51/2 Soi Ramkhamhaeng 96,<br />
+                  Ramkhamhaeng Road, Saphan Sung District,<br />
+                  Bangkok, 10240
+                </p>
+              </div>
+
               <div className="rounded-2xl border border-[#004874]/8 bg-white p-6 shadow-[0_4px_24px_rgba(0,72,116,0.07)]">
                 <h3 className={`${cormorant.className} text-xl font-bold text-[#0D1B2A]`}>Helpful to include</h3>
                 <ul className="mt-4 space-y-3">
