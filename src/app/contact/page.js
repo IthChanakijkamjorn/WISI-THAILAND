@@ -64,10 +64,23 @@ export default function ContactPage() {
       message: formData.get("message"),
     };
     try {
+      const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+      let recaptchaToken = "";
+      if (siteKey && typeof window !== "undefined" && window.grecaptcha) {
+        recaptchaToken = await new Promise((resolve, reject) => {
+          window.grecaptcha.ready(() => {
+            window.grecaptcha
+              .execute(siteKey, { action: "contact_form" })
+              .then(resolve)
+              .catch(reject);
+          });
+        });
+      }
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, recaptchaToken }),
       });
       if (res.ok) {
         setStatus("success");
@@ -232,6 +245,14 @@ export default function ContactPage() {
                   <span>❌</span> Something went wrong. Please try again.
                 </div>
               )}
+
+              <p className="mt-4 text-center text-[10px] leading-5 text-[#4A6274]/70">
+                This site is protected by reCAPTCHA and the Google{" "}
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#004874]">Privacy Policy</a>
+                {" "}and{" "}
+                <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#004874]">Terms of Service</a>
+                {" "}apply.
+              </p>
             </form>
 
             {/* Info + tips */}
