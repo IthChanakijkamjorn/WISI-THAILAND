@@ -25,7 +25,7 @@ export default function SiteHeader() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 bg-[#00385E] shadow-[0_2px_16px_rgba(0,20,40,0.25)]">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-[#00385E]">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 sm:px-10">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
