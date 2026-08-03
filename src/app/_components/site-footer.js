@@ -40,7 +40,11 @@ export default function SiteFooter() {
               </svg>
               admin@wisithailand.com
             </a>
-            <p className="text-sm text-[#4A6274]">Mon – Fri: 08:30 – 17:30</p>
+            <p className="text-sm text-[#4A6274]">
+              51/2 Soi Ramkhamhaeng 96, Ramkhamhaeng Road,<br />
+              Saphan Sung District, Bangkok, 10240<br />
+              Mon – Fri: 08:30 – 17:30
+            </p>
           </div>
 
           <div className="flex flex-col gap-3">
