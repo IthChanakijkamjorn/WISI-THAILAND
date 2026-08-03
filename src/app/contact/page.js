@@ -19,7 +19,7 @@ const contactDetails = [
   {
     icon: (
       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.163 21 3 14.837 3 7V5z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
       </svg>
     ),
     label: "Phone",
@@ -160,7 +160,7 @@ export default function ContactPage() {
                     type="text"
                     required
                     placeholder="Your name"
-                    className="mt-1 w-full rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40"
+                    className="mt-1 w-full rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40 focus:bg-white"
                   />
                 </label>
                 <label className="flex flex-col gap-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#004874]/70">
@@ -170,7 +170,7 @@ export default function ContactPage() {
                     type="email"
                     required
                     placeholder="you@example.com"
-                    className="mt-1 w-full rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40"
+                    className="mt-1 w-full rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40 focus:bg-white"
                   />
                 </label>
                 <label className="flex flex-col gap-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#004874]/70">
@@ -179,14 +179,14 @@ export default function ContactPage() {
                     name="company"
                     type="text"
                     placeholder="Company name"
-                    className="mt-1 w-full rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40"
+                    className="mt-1 w-full rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40 focus:bg-white"
                   />
                 </label>
                 <label className="flex flex-col gap-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#004874]/70">
                   Inquiry Type
                   <select
                     name="inquiryType"
-                    className="mt-1 w-full rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40"
+                    className="mt-1 w-full rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40 focus:bg-white"
                   >
                     <option>General Inquiry</option>
                     <option>Product Enquiry</option>
@@ -201,7 +201,7 @@ export default function ContactPage() {
                     required
                     rows={5}
                     placeholder="Tell us how we can help you."
-                    className="mt-1 w-full resize-none rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40"
+                    className="mt-1 w-full resize-none rounded-xl border border-[#004874]/12 bg-[#F7FAFC] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[#0D1B2A] outline-none transition focus:border-[#004874]/40 focus:bg-white"
                   />
                 </label>
               </div>
@@ -209,7 +209,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-[#004874] px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-[0_4px_16px_rgba(0,72,116,0.35)] transition hover:bg-[#003558] disabled:opacity-60"
+                className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-[#004874] px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-[0_4px_16px_rgba(0,72,116,0.3)] transition hover:bg-[#003558] disabled:opacity-60"
               >
                 {status === "loading" ? (
                   <>
@@ -284,13 +284,13 @@ export default function ContactPage() {
           <div className="w-full overflow-hidden" style={{ height: "420px" }}>
             <iframe
               title="WISI Thailand Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.8!2d100.5!3d13.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBangkok%2C+Thailand!5e0!3m2!1sen!2sth!4v1700000000000"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d484.38609066924545!2d100.66875873523065!3d13.773522739164934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d617e3d712dc1%3A0x6ba8fa786858ff4b!2z4Lia4Lij4Li04Lip4Lix4LiXIOC5gOC4reC5h-C4geC4i-C5jOC5gOC4nuC4tOC4o-C5jOC4lyDguK3guLTguYDguKXguYfguITguYLguJfguKPguJnguLTguIQg4LmB4Lit4LiZ4LiU4LmMIOC4hOC4reC4oeC4oeC4ueC4meC4tOC5gOC4hOC4iuC4seC5iOC4mSDguIjguLPguIHguLHguJQ!5e0!3m2!1sth!2sth!4v1785722621308!5m2!1sth!2sth"
               width="100%"
               height="420"
               style={{ border: 0, display: "block" }}
               allowFullScreen
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
+              referrerPolicy="strict-origin-when-cross-origin"
             />
           </div>
         </section>
