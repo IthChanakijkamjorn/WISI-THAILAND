@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { cormorant } from "./_components/brand-fonts";
+import { cormorant, inter } from "./_components/brand-fonts";
 import SiteHeader from "./_components/site-header";
 import SiteShell from "./_components/site-shell";
 import anniversaryIcon from "./_components/icons/100-years-wisi-icon.png";
@@ -62,7 +62,7 @@ export default function Home() {
             />
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#4CC3F0]">Celebrating a Milestone</p>
-              <h2 className={`${cormorant.className} mt-2 text-2xl font-bold text-white sm:text-3xl`}>
+              <h2 className={`${inter.className} mt-2 text-2xl font-bold text-white sm:text-3xl`}>
                 100 Years of WISI Engineering Excellence
               </h2>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-white/70">
