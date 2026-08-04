@@ -200,7 +200,7 @@ export default function Home() {
                   Trusted across Europe.<br />Now available in Thailand.
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-[#4A6274]">
-                  WISI is a German manufacturer with over 70 years of expertise across a diverse range of technology solutions. Every product is engineered for long-term reliability in demanding [...]
+                  WISI is a German manufacturer with over 70 years of expertise across a diverse range of technology solutions. Every product is engineered for long-term reliability in demanding environments, backed by rigorous quality standards.
                 </p>
                 <Link
                   href="/products"
