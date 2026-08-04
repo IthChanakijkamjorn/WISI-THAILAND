@@ -15,8 +15,8 @@ export default function SiteFooter() {
             </div>
             <p className="text-sm leading-6 text-[#4A6274]">
               Authorised representative of WISI products.<br />
-              Serving broadcasters, system integrators,<br />
-              and hospitality operators across Thailand.
+              Serving businesses across a wide range<br />
+              of industries in Thailand.
             </p>
           </div>
 
