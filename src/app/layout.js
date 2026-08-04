@@ -10,10 +10,10 @@ const inter = Inter({
 
 export const metadata = {
   title: "WISI Thailand",
-  description: "Authorised representative of WISI products for broadcast, SMATV/MATV headend, signal processing, and fibre distribution across Thailand.",
+  description: "Authorised representative of WISI products, supplying a wide range of technology solutions to businesses across Thailand.",
   openGraph: {
     title: "WISI Thailand",
-    description: "Authorised representative of WISI products for broadcast, SMATV/MATV headend, signal processing, and fibre distribution across Thailand.",
+    description: "Authorised representative of WISI products, supplying a wide range of technology solutions to businesses across Thailand.",
     url: "https://wisithailand.co.th",
     siteName: "WISI Thailand",
     locale: "en_US",
