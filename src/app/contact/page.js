@@ -286,7 +286,7 @@ export default function ContactPage() {
               <div className="rounded-2xl border border-[#004874]/8 bg-[#004874] p-6 text-white">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-white/60">About Us</p>
                 <p className="mt-2 text-sm leading-6 text-white/80">
-                  We are the authorised representative of WISI products in Thailand — supplying a wide range of technology solutions to businesses across the country, backed by local expertise a[...]
+                  We are the authorised representative of WISI products in Thailand — supplying a wide range of technology solutions to businesses across the country, backed by local expertise and dedicated support.
                 </p>
               </div>
             </div>
