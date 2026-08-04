@@ -13,7 +13,7 @@ const services = [
     tag: "Distribution",
     title: "Product Distribution",
     description:
-      "We supply WISI broadcast and signal distribution equipment to system integrators, contractors, and operators across Thailand — with local stock and fast fulfilment.",
+      "We supply a wide range of WISI technology solutions to system integrators, contractors, and operators across Thailand — with local stock and fast fulfilment.",
     icon: iconDistribution,
     delay: "0ms",
   },
@@ -66,7 +66,7 @@ export default function Home() {
                 100 Years of WISI Engineering Excellence
               </h2>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-white/70">
-                Since 1926, WISI has been engineering trusted broadcast and signal distribution technology across Europe — and we&rsquo;re proud to bring a century of that expertise to Thailand.
+                Since 1926, WISI has been engineering trusted technology solutions across Europe — and we&rsquo;re proud to bring a century of that expertise to Thailand.
               </p>
             </div>
           </div>
@@ -94,15 +94,15 @@ export default function Home() {
               className={`${cormorant.className} animate-fade-up mx-auto mt-6 max-w-4xl text-center text-5xl font-bold leading-[1.15] text-[#0D1B2A] sm:text-6xl lg:text-7xl`}
               style={{ animationDelay: "80ms" }}
             >
-              Broadcast &amp; Signal<br />
-              <span className="text-[#004874]">Infrastructure</span> for Thailand.
+              Technology Solutions<br />
+              <span className="text-[#004874]">& Infrastructure</span> for Thailand.
             </h1>
 
             <p
               className="animate-fade-up mx-auto mt-6 max-w-2xl text-center text-base leading-8 text-[#4A6274] sm:text-lg"
               style={{ animationDelay: "160ms" }}
             >
-              WISI Thailand supports system integrators, broadcasters, and hospitality operators with reliable, European-quality WISI products — backed by a local team.
+              WISI Thailand supports businesses across a wide range of industries with reliable, European-quality WISI products — backed by a local team.
             </p>
 
             {/* CTA buttons */}
@@ -200,7 +200,7 @@ export default function Home() {
                   Trusted across Europe.<br />Now available in Thailand.
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-[#4A6274]">
-                  WISI is a German manufacturer with over 70 years of expertise in broadcast, headend, and fibre optic signal distribution. Every product is engineered for long-term reliability in demanding environments.
+                  WISI is a German manufacturer with over 70 years of expertise across a diverse range of technology solutions. Every product is engineered for long-term reliability in demanding [...]
                 </p>
                 <Link
                   href="/products"
