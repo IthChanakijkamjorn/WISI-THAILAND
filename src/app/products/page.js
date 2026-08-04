@@ -63,7 +63,7 @@ export default async function ProductsPage() {
               Our Product Range
             </h1>
             <p className="mt-3 max-w-2xl text-base leading-7 text-[#4A6274] animate-fade-up" style={{ animationDelay: '120ms' }}>
-              A curated selection of WISI products for broadcast, SMATV/MATV headend, signal processing, and fibre distribution.
+              A curated selection of WISI products spanning a wide range of technology solutions.
             </p>
 
             {/* Category quick-jump pills */}
@@ -122,7 +122,7 @@ export default async function ProductsPage() {
                       <Link
                         key={product._id}
                         href={`/products/${product.category}/${product.slug}`}
-                        className="group flex flex-col overflow-hidden rounded-2xl border border-[#004874]/8 bg-white shadow-[0_2px_12px_rgba(0,72,116,0.06)] transition hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,72,116,0.14)] animate-fade-up"
+                        className="group flex flex-col overflow-hidden rounded-2xl border border-[#004874]/8 bg-white shadow-[0_2px_12px_rgba(0,72,116,0.06)] transition hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,72,116,0.12)]"
                         style={{ animationDelay: `${pi * 40}ms` }}
                       >
                         {/* Image */}
