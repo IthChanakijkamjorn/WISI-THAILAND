@@ -14,10 +14,24 @@ export const metadata = {
   openGraph: {
     title: "WISI Thailand",
     description: "Authorised representative of WISI products, supplying a wide range of technology solutions to businesses across Thailand.",
-    url: "https://wisithailand.co.th",
+    url: "https://www.wisithailand.com",
     siteName: "WISI Thailand",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/icon.png",
+        width: 512,
+        height: 512,
+        alt: "WISI Thailand Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "WISI Thailand",
+    description: "Authorised representative of WISI products, supplying a wide range of technology solutions to businesses across Thailand.",
+    images: ["/icon.png"],
   },
 };
 
