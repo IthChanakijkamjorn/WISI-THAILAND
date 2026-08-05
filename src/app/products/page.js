@@ -1,10 +1,26 @@
 import Link from "next/link";
+import Image from "next/image";
 import SiteHeader from "../_components/site-header";
 import SiteShell from "../_components/site-shell";
 import { cormorant } from "../_components/brand-fonts";
 import { productTypes } from "./_data/productTypes";
+import { client } from "../../lib/sanity";
 
-export default function ProductsPage() {
+const mainTypeSlugs = ['falcon', 'tangram', 'chameleon', 'octopus'];
+
+async function getAdditionalProducts() {
+  return client.fetch(
+    `*[_type == "product" && defined(slug.current) && !(subCategory in $mainTypes)] | order(name asc) {
+      _id, name, "slug": slug.current, subCategory, brand,
+      "imageUrl": image.asset->url
+    }`,
+    { mainTypes: mainTypeSlugs }
+  );
+}
+
+export default async function ProductsPage() {
+  const additionalProducts = await getAdditionalProducts();
+
   return (
     <SiteShell>
       <SiteHeader />
@@ -34,7 +50,7 @@ export default function ProductsPage() {
             {productTypes.map((type, index) => (
               <div
                 key={type.slug}
-                className="animate-fade-up group flex flex-col overflow-hidden rounded-2xl border border-[#004874]/10 bg-white shadow-[0_2px_16px_rgba(0,72,116,0.08)] transition hover:-translate-y-1 hover:shadow-[0_10px_32px_rgba(0,72,116,0.14)]"
+                className="animate-fade-up group flex flex-col overflow-hidden rounded-2xl border border-[#004874]/10 bg-white shadow-[0_2px_16px_rgba(0,72,116,0.08)] transition hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(0,72,116,0.14)]"
                 style={{ animationDelay: `${index * 80}ms` }}
               >
                 {/* Placeholder image area */}
@@ -82,17 +98,50 @@ export default function ProductsPage() {
               </div>
             ))}
           </div>
-        </section>
 
-        {/* Coming soon banner */}
-        <section className="mx-auto w-full max-w-7xl px-6 pb-14 sm:px-10">
-          <div className="flex items-center gap-4 rounded-2xl border border-dashed border-[#004874]/20 bg-[#F0F5F9] px-6 py-5">
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#004874]/10 text-sm text-[#004874]">+</span>
-            <p className="text-sm text-[#4A6274]">
-              <span className="font-semibold text-[#0D1B2A]">Additional product lines coming soon.</span>{' '}
-              More WISI product families will be available here as they are added.
-            </p>
-          </div>
+          {/* Additional products — no heading, just cards */}
+          {additionalProducts.length > 0 && (
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {additionalProducts.map((product, pi) => (
+                <Link
+                  key={product._id}
+                  href={`/products/${product.subCategory ?? 'other'}/${product.slug}`}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-[#004874]/8 bg-white shadow-[0_2px_12px_rgba(0,72,116,0.06)] transition hover:-translate-y-1 hover:shadow-[0_6px_24px_rgba(0,72,116,0.12)] animate-fade-up"
+                  style={{ animationDelay: `${pi * 40}ms` }}
+                >
+                  <div className="relative h-44 w-full overflow-hidden bg-[#F7FAFC]">
+                    {product.imageUrl ? (
+                      <Image
+                        src={product.imageUrl}
+                        alt={product.name}
+                        fill
+                        className="object-contain p-4 transition duration-300 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center">
+                        <span className="text-3xl opacity-20">📦</span>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-[#004874]/0 transition group-hover:bg-[#004874]/4" />
+                  </div>
+                  <div className="flex flex-1 flex-col p-4">
+                    {product.brand && (
+                      <p className="mb-1 text-[9px] font-semibold uppercase tracking-[0.3em] text-[#C8A96E]">{product.brand}</p>
+                    )}
+                    <h3 className="text-sm font-semibold leading-5 text-[#0D1B2A] transition group-hover:text-[#004874]">
+                      {product.name}
+                    </h3>
+                    <div className="mt-3 flex items-center justify-between">
+                      <span className="text-[9px] font-semibold uppercase tracking-[0.3em] text-[#004874]">View details</span>
+                      <svg className="h-3.5 w-3.5 text-[#004874]/40 transition group-hover:translate-x-0.5 group-hover:text-[#004874]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* Bottom CTA */}
@@ -105,7 +154,7 @@ export default function ProductsPage() {
             </div>
             <Link
               href="/contact"
-              className="shrink-0 rounded-xl bg-[#004874] px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-[0_4px_16px_rgba(0,72,116,0.3)] transition hover:bg-[#003558]"
+              className="shrink-0 rounded-xl bg-[#004874] px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-[0_4px_16px_rgba(0,72,116,0.3)] transition hover:bg-[#003558] hover:shadow-[0_4px_20px_rgba(0,72,116,0.4)]"
             >
               Contact Us
             </Link>
