@@ -83,6 +83,7 @@ export default function ContactPage() {
   }
 
   return (
+    <>
     <SiteShell>
       <SiteHeader />
       <main className="relative pt-20">
@@ -224,16 +225,6 @@ export default function ContactPage() {
                 ) : "Send Message"}
               </button>
 
-              {status === "success" && (
-                <div className="mt-4 flex items-center gap-2 rounded-xl bg-green-50 px-4 py-3 text-sm font-semibold text-green-700">
-                  <span>✅</span> Message sent! We will get back to you soon.
-                </div>
-              )}
-              {status === "error" && (
-                <div className="mt-4 flex items-center gap-2 rounded-xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-600">
-                  <span>❌</span> Something went wrong. Please try again.
-                </div>
-              )}
 
               <p className="mt-4 text-center text-[10px] leading-5 text-[#4A6274]/70">
                 This site is protected by reCAPTCHA and the Google{" "}
@@ -316,5 +307,42 @@ export default function ContactPage() {
 
       </main>
     </SiteShell>
+
+      {/* Status Modal */}
+      {(status === "success" || status === "error") && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center px-4"
+          style={{ background: "rgba(0,17,31,0.7)", backdropFilter: "blur(4px)" }}
+          onClick={() => setStatus("idle")}
+        >
+          <div
+            className="w-full max-w-sm rounded-2xl bg-white p-8 text-center shadow-2xl animate-fade-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full text-4xl"
+              style={{ background: status === "success" ? "#f0fdf4" : "#fef2f2" }}
+            >
+              {status === "success" ? "✅" : "❌"}
+            </div>
+            <h3 className="text-xl font-bold text-[#0D1B2A]">
+              {status === "success" ? "Message Sent!" : "Something Went Wrong"}
+            </h3>
+            <p className="mt-2 text-sm text-[#4A6274]">
+              {status === "success"
+                ? "Thank you for reaching out. We will get back to you as soon as possible."
+                : "We could not send your message. Please try again or contact us directly by email."}
+            </p>
+            <button
+              onClick={() => setStatus("idle")}
+              className="mt-6 w-full rounded-xl px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white transition"
+              style={{ background: status === "success" ? "#004874" : "#dc2626" }}
+            >
+              {status === "success" ? "Got it" : "Try Again"}
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
