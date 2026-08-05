@@ -16,8 +16,8 @@ export async function POST(request) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'WISI Thailand <onboarding@resend.dev>',
-        to: ['admin@wisithailand.com', 'admin@expertelectronic.co.th'],
+        from: 'WISI Thailand <noreply@wisithailand.com>',
+        to: ['admin@wisithailand.com', 'wisisales@wisithailand.com'],
         subject: `New enquiry from ${fullName}`,
         html: `
           <h2>New Contact Form Submission — WISI Thailand</h2>
