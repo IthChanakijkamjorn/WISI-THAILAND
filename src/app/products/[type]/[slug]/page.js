@@ -17,7 +17,7 @@ export async function generateStaticParams() {
   const products = await client.fetch(
     `*[_type == "product" && defined(slug.current)] { category, "slug": slug.current }`
   );
-  return products.filter((p) => p.category && p.slug).map((p) => ({ category: p.category, slug: p.slug }));
+  return products.filter((p) => p.category && p.slug).map((p) => ({ type: p.category, slug: p.slug }));
 }
 
 async function getProduct(slug) {
@@ -34,10 +34,10 @@ async function getProduct(slug) {
 }
 
 export default async function ProductPage({ params }) {
-  const { category, slug } = await params;
+  const { type, slug } = await params;
   const product = await getProduct(slug);
   if (!product) notFound();
-  const categoryLabel = categoryLabels[category] || category;
+  const categoryLabel = categoryLabels[type] || type;
 
   const flatSpecs = product.specifications?.length > 0 && typeof product.specifications[0].label === 'string';
 
@@ -52,7 +52,7 @@ export default async function ProductPage({ params }) {
             <nav className="flex flex-wrap items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.25em]">
               <Link href="/products" className="text-[#004874]/50 transition hover:text-[#004874]">Products</Link>
               <svg className="h-3 w-3 text-[#004874]/30" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
-              <Link href={`/products/${category}`} className="text-[#004874]/50 transition hover:text-[#004874]">{categoryLabel}</Link>
+              <Link href={`/products/${type}`} className="text-[#004874]/50 transition hover:text-[#004874]">{categoryLabel}</Link>
               <svg className="h-3 w-3 text-[#004874]/30" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
               <span className="max-w-[200px] truncate text-[#004874]">{product.name}</span>
             </nav>
