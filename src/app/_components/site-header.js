@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cormorant } from "./brand-fonts";
+import wisiLogo from "./icons/WISI LOGO.png";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -29,9 +31,7 @@ export default function SiteHeader() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 sm:px-10">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-xs font-black text-[#00385E]">
-              W
-            </span>
+            <Image src={wisiLogo} alt="WISI Logo" width={32} height={32} className="h-8 w-8 object-contain" />
             <span className={`${cormorant.className} text-xl font-bold tracking-wide text-white`}>
               WISI Thailand
             </span>
