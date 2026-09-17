@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 const RECAPTCHA_VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify';
 const RECAPTCHA_MIN_SCORE = 0.5;
 const RECAPTCHA_ACTION = 'contact_form';
+const RECAPTCHA_TIMEOUT_MS = 5000;
 
 export async function POST(request) {
   try {
@@ -21,16 +22,28 @@ export async function POST(request) {
       return NextResponse.json({ error: 'reCAPTCHA is not configured' }, { status: 500 });
     }
 
-    const recaptchaVerification = await fetch(RECAPTCHA_VERIFY_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams({
-        secret: process.env.RECAPTCHA_SECRET_KEY,
-        response: recaptchaToken,
-      }),
-    });
+    const recaptchaAbortController = new AbortController();
+    const recaptchaTimeout = setTimeout(() => recaptchaAbortController.abort(), RECAPTCHA_TIMEOUT_MS);
+
+    let recaptchaVerification;
+
+    try {
+      recaptchaVerification = await fetch(RECAPTCHA_VERIFY_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          secret: process.env.RECAPTCHA_SECRET_KEY,
+          response: recaptchaToken,
+        }),
+        signal: recaptchaAbortController.signal,
+      });
+    } catch {
+      return NextResponse.json({ error: 'reCAPTCHA verification failed' }, { status: 400 });
+    } finally {
+      clearTimeout(recaptchaTimeout);
+    }
 
     let recaptchaResult = null;
 
