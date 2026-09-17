@@ -32,10 +32,15 @@ export async function POST(request) {
       }),
     });
 
-    const recaptchaResult = await recaptchaVerification.json();
+    let recaptchaResult = null;
+
+    try {
+      recaptchaResult = await recaptchaVerification.json();
+    } catch {}
 
     if (
       !recaptchaVerification.ok ||
+      !recaptchaResult ||
       !recaptchaResult.success ||
       recaptchaResult.action !== RECAPTCHA_ACTION ||
       typeof recaptchaResult.score !== 'number' ||
