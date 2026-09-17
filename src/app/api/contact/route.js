@@ -40,7 +40,7 @@ export async function POST(request) {
         signal: recaptchaAbortController.signal,
       });
     } catch {
-      return NextResponse.json({ error: 'reCAPTCHA verification failed' }, { status: 400 });
+      return NextResponse.json({ error: 'reCAPTCHA verification unavailable' }, { status: 500 });
     } finally {
       clearTimeout(recaptchaTimeout);
     }
