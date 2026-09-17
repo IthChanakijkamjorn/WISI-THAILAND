@@ -1,12 +1,45 @@
 import { NextResponse } from 'next/server';
 
+const RECAPTCHA_VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify';
+const RECAPTCHA_MIN_SCORE = 0.5;
+
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { fullName, email, company, inquiryType, message } = body;
+    const { fullName, email, company, inquiryType, message, recaptchaToken } = body;
 
     if (!fullName || !email || !message) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    }
+
+    if (!recaptchaToken) {
+      return NextResponse.json({ error: 'Missing reCAPTCHA token' }, { status: 400 });
+    }
+
+    if (!process.env.RECAPTCHA_SECRET_KEY) {
+      return NextResponse.json({ error: 'reCAPTCHA is not configured' }, { status: 500 });
+    }
+
+    const recaptchaVerification = await fetch(RECAPTCHA_VERIFY_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        secret: process.env.RECAPTCHA_SECRET_KEY,
+        response: recaptchaToken,
+      }),
+    });
+
+    const recaptchaResult = await recaptchaVerification.json();
+
+    if (
+      !recaptchaVerification.ok ||
+      !recaptchaResult.success ||
+      typeof recaptchaResult.score !== 'number' ||
+      recaptchaResult.score < RECAPTCHA_MIN_SCORE
+    ) {
+      return NextResponse.json({ error: 'reCAPTCHA verification failed' }, { status: 400 });
     }
 
     const res = await fetch('https://api.resend.com/emails', {
