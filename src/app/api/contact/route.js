@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 
 const RECAPTCHA_VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify';
 const RECAPTCHA_MIN_SCORE = 0.5;
+const RECAPTCHA_ACTION = 'contact_form';
 
 export async function POST(request) {
   try {
@@ -36,6 +37,7 @@ export async function POST(request) {
     if (
       !recaptchaVerification.ok ||
       !recaptchaResult.success ||
+      recaptchaResult.action !== RECAPTCHA_ACTION ||
       typeof recaptchaResult.score !== 'number' ||
       recaptchaResult.score < RECAPTCHA_MIN_SCORE
     ) {
