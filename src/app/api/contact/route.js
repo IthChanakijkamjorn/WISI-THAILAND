@@ -19,7 +19,7 @@ export async function POST(request) {
     }
 
     if (!process.env.RECAPTCHA_SECRET_KEY) {
-      return NextResponse.json({ error: 'reCAPTCHA is not configured' }, { status: 500 });
+      return NextResponse.json({ error: 'reCAPTCHA verification unavailable' }, { status: 500 });
     }
 
     const recaptchaAbortController = new AbortController();
